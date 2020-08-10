@@ -185,7 +185,7 @@ void test_get_ansi_color_scheme(void **state) {
 }
 
 
-void test_demo_log(void **state) {
+void test_demo_log_thread(void **state) {
     thread_logger *thl = new_thread_logger(true);
     LOG_INFO(thl, 0, "this is an info log");
     LOG_WARN(thl, 0, "this is a warn log");
@@ -199,11 +199,27 @@ void test_demo_log(void **state) {
     clear_thread_logger(thl);
 }
 
+void test_demo_log_file(void **state) {
+    file_logger *fhl = new_file_logger("testfile.log", true);
+    LOG_INFO(fhl->thl, fhl->file_descriptor, "this is an info log");
+    LOG_WARN(fhl->thl, fhl->file_descriptor,"this is a warn log");
+    LOG_ERROR(fhl->thl, fhl->file_descriptor, "this is an error log");
+    LOG_DEBUG(fhl->thl, fhl->file_descriptor, "this is a debug log");
+    LOGF_INFO(fhl->thl, fhl->file_descriptor, "this is a %s style info log", "printf");
+    LOGF_WARN(fhl->thl, fhl->file_descriptor, "this is a %s style warn log", "printf");
+    LOGF_ERROR(fhl->thl, fhl->file_descriptor, "this is a %s style error log", "printf");
+    LOGF_DEBUG(fhl->thl, fhl->file_descriptor, "this is a %s style debug log", "printf");
+
+    clear_file_logger(fhl);
+}
+
+
 int main(void) {
     const struct CMUnitTest tests[] = {
         cmocka_unit_test(test_thread_logger),
         cmocka_unit_test(test_file_logger),
-        cmocka_unit_test(test_demo_log)
+        cmocka_unit_test(test_demo_log_thread),
+        cmocka_unit_test(test_demo_log_file)
     };
     return cmocka_run_group_tests(tests, NULL, NULL);
 }
