@@ -41,17 +41,20 @@
  * be ignored
  */
 thread_logger *new_thread_logger(bool with_debug) {
+
     thread_logger *thl = malloc(sizeof(thread_logger));
     if (thl == NULL) {
         printf("failed to malloc thread_logger\n");
         return NULL;
     }
+
     thl->lock = pthread_mutex_lock;
     thl->unlock = pthread_mutex_unlock;
     thl->log = log_func;
     thl->logf = logf_func;
     thl->debug = with_debug;
     pthread_mutex_init(&thl->mutex, NULL);
+
     return thl;
 }
 
@@ -61,11 +64,13 @@ thread_logger *new_thread_logger(bool with_debug) {
  * appended to
  */
 file_logger *new_file_logger(char *output_file, bool with_debug) {
+
     thread_logger *thl = new_thread_logger(with_debug);
     if (thl == NULL) {
         // dont printf log here since new_thread_logger handles that
         return NULL;
     }
+
     file_logger *fhl = malloc(sizeof(file_logger));
     if (fhl == NULL) {
         // free thl as it is not null
@@ -73,12 +78,11 @@ file_logger *new_file_logger(char *output_file, bool with_debug) {
         printf("failed to malloc file_logger\n");
         return NULL;
     }
+
     // append to file, create if not exist, sync write files
     // TODO(bonedaddy): try to use O_DSYNC for data integrity sync
     int file_descriptor =
         open(output_file, O_WRONLY | O_CREAT | O_SYNC | O_APPEND, 0640);
-    // TODO(bonedaddy): should this just be `< 0` ? `open` shouldn't return 0 but im
-    // unsure about removing the check for it
     if (file_descriptor <= 0) {
         // free thl as it is not null
         free(thl);
@@ -87,8 +91,10 @@ file_logger *new_file_logger(char *output_file, bool with_debug) {
         printf("failed to run posix open function\n");
         return NULL;
     }
+
     fhl->fd = file_descriptor;
     fhl->thl = thl;
+
     return fhl;
 }
 
@@ -100,14 +106,16 @@ file_logger *new_file_logger(char *output_file, bool with_debug) {
  * @param message the actuall message to log
  */
 int write_file_log(int file_descriptor, char *message) {
-    // 2 for \n
-    char *msg = calloc(1, strlen(message) + 2);
+
+    char *msg = calloc(1, strlen(message) + 2); // 2 for \n
     if (msg == NULL) {
         printf("failed to calloc msg\n");
         return -1;
     }
+
     strcat(msg, message);
     strcat(msg, "\n");
+
     int response = write(file_descriptor, msg, strlen(msg));
     if (response == -1) {
         printf("failed to write file log message");
@@ -118,7 +126,9 @@ int write_file_log(int file_descriptor, char *message) {
         // number of bytes written
         response = 0;
     }
+
     free(msg);
+
     return response;
 }
 
@@ -132,6 +142,7 @@ int write_file_log(int file_descriptor, char *message) {
  */
 void logf_func(thread_logger *thl, int file_descriptor, LOG_LEVELS level, char *file,
                int line, char *message, ...) {
+
     va_list args;
     va_start(args, message);
     char msg[sizeof(args) + (strlen(message) * 2)];
@@ -143,6 +154,7 @@ void logf_func(thread_logger *thl, int file_descriptor, LOG_LEVELS level, char *
         printf("failed to vsprintf\n");
         return;
     }
+
     log_func(thl, file_descriptor, msg, level, file, line);
 }
 
@@ -156,11 +168,13 @@ void logf_func(thread_logger *thl, int file_descriptor, LOG_LEVELS level, char *
  */
 void log_func(thread_logger *thl, int file_descriptor, char *message,
               LOG_LEVELS level, char *file, int line) {
+
     char *time_str = get_time_string();
     if (time_str == NULL) {
         // dont printf log as get_time_str does that
         return;
     }
+
     char location_info[strlen(file) + sizeof(line) + 4];
     memset(location_info, 0, sizeof(location_info));
 
@@ -201,20 +215,27 @@ void log_func(thread_logger *thl, int file_descriptor, char *message,
  * @param message the actuall message to log
  */
 void info_log(thread_logger *thl, int file_descriptor, char *message) {
-    // 2 = 1 for null terminator, 1 for space after ]
-    char *msg = calloc(1, strlen(message) + strlen("[info - ") + (size_t)2);
+
+    char *msg = calloc(1, strlen(message) + strlen("[info - ") +
+                              2); // 2, 1 for null terminator and 1 for space after ]
     if (msg == NULL) {
         printf("failed to calloc info_log msg");
         return;
     }
+
     thl->lock(&thl->mutex);
+
     strcat(msg, "[info - ");
     strcat(msg, message);
+
     if (file_descriptor != 0) {
         write_file_log(file_descriptor, msg);
     }
+
     print_colored(COLORS_GREEN, msg);
+
     thl->unlock(&thl->mutex);
+
     free(msg);
 }
 
@@ -225,24 +246,27 @@ void info_log(thread_logger *thl, int file_descriptor, char *message) {
  * @param message the actuall message to log
  */
 void warn_log(thread_logger *thl, int file_descriptor, char *message) {
-    // 2 = 1 for null terminator, 1 for space after ]
-    char *msg = calloc(1, strlen(message) + strlen("[warn - ") + (size_t)2);
+
+    char *msg = calloc(1, strlen(message) + strlen("[warn - ") +
+                              2); // 2, 1 for null terminator and 1 for space after ]
     if (msg == NULL) {
         printf("failed to calloc warn_log msg");
         return;
     }
+
     thl->lock(&thl->mutex);
+
     strcat(msg, "[warn - ");
     strcat(msg, message);
+
     if (file_descriptor != 0) {
-        // TODO(bonedaddy): decide if we want to copy
-        // char *cpy = malloc(strlen(msg)+1);
-        // strcpy(cpy, msg);
         write_file_log(file_descriptor, msg);
-        // free(cpy);
     }
+
     print_colored(COLORS_YELLOW, msg);
+
     thl->unlock(&thl->mutex);
+
     free(msg);
 }
 
@@ -253,20 +277,27 @@ void warn_log(thread_logger *thl, int file_descriptor, char *message) {
  * @param message the actuall message to log
  */
 void error_log(thread_logger *thl, int file_descriptor, char *message) {
-    // 2 = 1 for null terminator, 1 for space after ]
-    char *msg = calloc(1, strlen(message) + strlen("[error - ") + (size_t)2);
+
+    char *msg = calloc(1, strlen(message) + strlen("[error - ") +
+                              2); // 2, 1 for null terminator and 1 for space after ]
     if (msg == NULL) {
         printf("failed to calloc error_log msg");
         return;
     }
+
     thl->lock(&thl->mutex);
+
     strcat(msg, "[error - ");
     strcat(msg, message);
+
     if (file_descriptor != 0) {
         write_file_log(file_descriptor, msg);
     }
+
     print_colored(COLORS_RED, msg);
+
     thl->unlock(&thl->mutex);
+
     free(msg);
 }
 
@@ -277,24 +308,31 @@ void error_log(thread_logger *thl, int file_descriptor, char *message) {
  * @param message the actuall message to log
  */
 void debug_log(thread_logger *thl, int file_descriptor, char *message) {
-    // unless debug enabled dont show
+
     if (thl->debug == false) {
         return;
     }
-    // 2 = 1 for null terminator, 1 for space after ]
-    char *msg = calloc(1, strlen(message) + strlen("[debug - ") + (size_t)2);
+
+    char *msg = calloc(1, strlen(message) + strlen("[debug - ") +
+                              2); // 2, 1 for null terminator and 1 for space after ]
     if (msg == NULL) {
         printf("failed to calloc debug_log msg");
         return;
     }
+
     thl->lock(&thl->mutex);
+
     strcat(msg, "[debug - ");
     strcat(msg, message);
+
     if (file_descriptor != 0) {
         write_file_log(file_descriptor, msg);
     }
+
     print_colored(COLORS_SOFT_RED, msg);
+
     thl->unlock(&thl->mutex);
+
     free(msg);
 }
 
@@ -302,6 +340,7 @@ void debug_log(thread_logger *thl, int file_descriptor, char *message) {
  * @param thl the thread_logger instance to free memory for
  */
 void clear_thread_logger(thread_logger *thl) {
+
     pthread_mutex_lock(&thl->mutex); // lock before destroying
     pthread_mutex_destroy(&thl->mutex);
     free(thl);
@@ -312,6 +351,7 @@ void clear_thread_logger(thread_logger *thl) {
  * embedded thread_logger and closes the open file
  */
 void clear_file_logger(file_logger *fhl) {
+
     close(fhl->fd);
     clear_thread_logger(fhl->thl);
     free(fhl);
@@ -321,14 +361,19 @@ void clear_file_logger(file_logger *fhl) {
  * @note make sure to free up the memory allocated when done
  */
 char *get_time_string() {
+
     char date[75];
+
     strftime(date, sizeof date, "%b %d %r", localtime(&(time_t){time(NULL)}));
+
     char *msg = calloc(1, sizeof(date) + 1);
     if (msg == NULL) {
         printf("failed to calloc get_time_string\n");
         return NULL;
     }
+
     strcat(msg, "");
     strcat(msg, date);
+
     return msg;
 }
