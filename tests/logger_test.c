@@ -210,6 +210,10 @@ void test_demo_log_file(void **state) {
     LOGF_ERROR(fhl->thl, fhl->fd, "this is a %s style error log", "printf");
     LOGF_DEBUG(fhl->thl, fhl->fd, "this is a %s style debug log", "printf");
 
+    // if you dont want to loger to a file and just stdout, simply set the `fhl->fd` value to 0
+    LOG_INFO(fhl->thl, 0, "this will only log to stdout");
+    LOGF_INFO(fhl->thl, 0, "this will only log to %s", "stdout");
+
     clear_file_logger(fhl);
 }
 
