@@ -2,7 +2,7 @@
 
 ![](./example.png)
 
-`ulog` (uber log) is a lightweight and threadsafe logging library for C based programs. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind.
+`ulog` (uber log) is a lightweight and threadsafe logging library for C based programs. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind. The logger is threadsafe in that only one thread can log at any one moment.
 
 # why another logging library?
 
@@ -49,15 +49,19 @@ clear_thread_logger(thl);
 
 file_logger *fhl = new_file_logger("testfile.log", true);
 
-LOG_INFO(fhl->thl, fhl->file_descriptor, "this is an info log");
-LOG_WARN(fhl->thl, fhl->file_descriptor,"this is a warn log");
-LOG_ERROR(fhl->thl, fhl->file_descriptor, "this is an error log");
-LOG_DEBUG(fhl->thl, fhl->file_descriptor, "this is a debug log");
+LOG_INFO(fhl->thl, fhl->fd, "this is an info log");
+LOG_WARN(fhl->thl, fhl->fd,"this is a warn log");
+LOG_ERROR(fhl->thl, fhl->fd, "this is an error log");
+LOG_DEBUG(fhl->thl, fhl->fd, "this is a debug log");
 
-LOGF_INFO(fhl->thl, fhl->file_descriptor, "this is a %s style info log", "printf");
-LOGF_WARN(fhl->thl, fhl->file_descriptor, "this is a %s style warn log", "printf");
-LOGF_ERROR(fhl->thl, fhl->file_descriptor, "this is a %s style error log", "printf");
-LOGF_DEBUG(fhl->thl, fhl->file_descriptor, "this is a %s style debug log", "printf");
+LOGF_INFO(fhl->thl, fhl->fd, "this is a %s style info log", "printf");
+LOGF_WARN(fhl->thl, fhl->fd, "this is a %s style warn log", "printf");
+LOGF_ERROR(fhl->thl, fhl->fd, "this is a %s style error log", "printf");
+LOGF_DEBUG(fhl->thl, fhl->fd, "this is a %s style debug log", "printf");
+
+// if you dont want to loger to a file and just stdout, simply set the `fhl->fd` value to 0
+LOG_INFO(fhl->thl, 0, "this will only log to stdout");
+LOGF_INFO(fhl->thl, 0, "this will only log to %s", "stdout");
 
 clear_file_logger(fhl);
 ```

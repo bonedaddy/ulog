@@ -81,7 +81,7 @@ file_logger *new_file_logger(char *output_file, bool with_debug) {
         printf("failed to run posix open function\n");
         return NULL;
     }
-    fhl->file_descriptor = file_descriptor;
+    fhl->fd = file_descriptor;
     fhl->thl = thl;
     return fhl;
 }
@@ -252,7 +252,7 @@ void clear_thread_logger(thread_logger *thl) {
 }
 
 void clear_file_logger(file_logger *fhl) {
-    close(fhl->file_descriptor);
+    close(fhl->fd);
     clear_thread_logger(fhl->thl);
     free(fhl);
 }
