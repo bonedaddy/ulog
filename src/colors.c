@@ -17,6 +17,8 @@
 #include <string.h>
 #include <unistd.h>
 
+/*! @brief returns an ansi color string to be used with printf
+ */
 char *get_ansi_color_scheme(COLORS color) {
     switch (color) {
         case COLORS_RED:
@@ -40,6 +42,12 @@ char *get_ansi_color_scheme(COLORS color) {
     }
 }
 
+/*! @brief prefixes a message with the given ANSI color code
+ * @return Success: char pointer containing the message prefixed with the ANSI color
+ * code
+ * @return Failure: NULL pointer
+ * @note you must free up the allocate memory for the returned vlaue
+ */
 char *format_colored(COLORS color, char *message) {
     char *pcolor = get_ansi_color_scheme(color);
     if (pcolor == NULL) {
@@ -55,10 +63,17 @@ char *format_colored(COLORS color, char *message) {
     return formatted;
 }
 
+/*! @brief prints message to stdout with the given color
+ */
 void print_colored(COLORS color, char *message) {
     printf("%s%s%s\n", get_ansi_color_scheme(color), message, ANSI_COLOR_RESET);
 }
 
+/*! @brief is like print_colored except it writes the data into the given file
+ * descriptor
+ * @return Success: 0
+ * @return Failure: 1
+ */
 int write_colored(COLORS color, int file_descriptor, char *message) {
     char *pcolor = get_ansi_color_scheme(color);
     if (pcolor == NULL) {
