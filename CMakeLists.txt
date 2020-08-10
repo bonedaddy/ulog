@@ -35,9 +35,10 @@ if(NOT CMAKE_BUILD_TYPE)
     list(APPEND flags -std=c17 -Wall -Wextra -Werror -pedantic)
 endif()
 
-
+include_directories(${PROJECT_SOURCE_DIR}/include)
 include(${PROJECT_SOURCE_DIR}/cmake/pkgs/doxygen.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/pkgs/valgrind.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/libraries/logger.cmake)
 
 
 # build documentation
