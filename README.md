@@ -1,6 +1,6 @@
 # ulog
 
-![](./example.png)
+![](./docs/example.png)
 
 `ulog` (uber log) is a lightweight and threadsafe logging library for C based programs. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind. 
 
