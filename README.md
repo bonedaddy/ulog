@@ -4,7 +4,7 @@
 
 `ulog` (uber log) is a lightweight and threadsafe logging library for C based programs. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind. 
 
-If not using debug logging then any DEBUG level log calls are silently skipped. The logger is threadsafe in that multiple threads can't log at the same time. In practice even when logging from multiple threads there is very little contention.  On average the logger consumed roughly 4KB of memory at any one time, however during initialization the memory consumed peaks at around 7KB.
+If not using debug logging then any DEBUG level log calls are silently skipped. The logger is threadsafe in that multiple threads can't log at the same time. In practice even when logging from multiple threads there is very little contention, and all memory allocations happen outside of mutex locks to ensure that threads aren't blocked on memory allocations. On average the logger consumed roughly 4KB of memory at any one time, however during initialization the memory consumed peaks at around 7KB.
 
 **Please be aware that after calling `clear_thread_logger` or `clear_file_logger` using the logger results in undefined behavior, likely a panic causing the program to exit. Having one or more threads initiate a log invocation while concurrently calling `clear_thread_logger` or `clear_file_logger` results in undefined behavior. When clearing the logger you must be certain no other threads will attempt to use the logger.
 
