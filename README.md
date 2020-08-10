@@ -2,7 +2,11 @@
 
 ![](./example.png)
 
-ulog (uber log) is a lightweight and threadsafe logging library for C based programs. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind.
+`ulog` (uber log) is a lightweight and threadsafe logging library for C based programs. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind.
+
+# why another logging library?
+
+I wanted a simple logging library that didnt leak memory, was well tested, and capable of color coded output. All logging libraries I found were complex code bases, leaked memory, and relied on global variables. Because of that, and as a way to better learn C development `ulog` was born.
 
 # installation
 
@@ -57,3 +61,7 @@ LOGF_DEBUG(fhl->thl, fhl->file_descriptor, "this is a %s style debug log", "prin
 
 clear_file_logger(fhl);
 ```
+
+# license
+
+AGPLv3 licensed, although if you want commercial license under MIT that can be aranged for a small fee.
