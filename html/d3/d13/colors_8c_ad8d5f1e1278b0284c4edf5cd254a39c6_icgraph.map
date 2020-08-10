@@ -1,0 +1,14 @@
+<map id="get_ansi_color_scheme" name="get_ansi_color_scheme">
+<area shape="rect" id="node1" title="returns an ansi color string to be used with printf" alt="" coords="935,81,1109,108"/>
+<area shape="rect" id="node2" href="$da/dd8/colors_8h.html#ab3caa8a3d15672e3597eb5e08b593860" title="prefixes a message with the given ANSI color code" alt="" coords="765,31,887,57"/>
+<area shape="rect" id="node3" href="$da/dd8/colors_8h.html#a9b86c057290aefcc15b20231f9cabe9e" title="prints message to stdout with the given color" alt="" coords="773,81,879,108"/>
+<area shape="rect" id="node12" href="$da/dd8/colors_8h.html#aa1fa3472b5bc15e07fe0d5ce481617a1" title="is like print_colored except it writes the data into the given file descriptor" alt="" coords="771,132,881,159"/>
+<area shape="rect" id="node4" href="$d1/d8c/logger_8h.html#adbd079d224c0a17760bd34be2b94d4d4" title="logs a debug styled message &#45; called by log_fn" alt="" coords="628,5,717,32"/>
+<area shape="rect" id="node9" href="$d1/d8c/logger_8h.html#a86974eb20c3c2a9b8528cca2bfd1526b" title="logs an error styled message &#45; called by log_fn" alt="" coords="633,56,713,83"/>
+<area shape="rect" id="node10" href="$d1/d8c/logger_8h.html#acb4bc62c4f5124145fdd7813a8eff213" title="logs an info styled message &#45; called by log_fn" alt="" coords="635,107,710,133"/>
+<area shape="rect" id="node11" href="$d1/d8c/logger_8h.html#a1979109bb7f9b3fccd5d35ab62af76b0" title="logs a warned styled message &#45; called by log_fn" alt="" coords="632,157,713,184"/>
+<area shape="rect" id="node5" href="$d1/d8c/logger_8h.html#a070efe5c00ac2e245b407b87a8314091" title="main function you should call, which will delegate to the appopriate *_log function" alt="" coords="503,81,580,108"/>
+<area shape="rect" id="node6" href="$d1/d8c/logger_8h.html#af467d23bd5262499508f556c4f530160" title="like log_func but for formatted logs" alt="" coords="372,56,455,83"/>
+<area shape="rect" id="node7" href="$d1/d8c/logger_8h.html#aba435ba2ea5433b4dc792c5d8038a0d1" title="returns a new thread safe logger if with_debug is false, then all debug_log calls will be ignored" alt="" coords="177,81,324,108"/>
+<area shape="rect" id="node8" href="$d1/d8c/logger_8h.html#a346f22d0e57a25484ee39115185ef609" title="returns a new file_logger Calls new_thread_logger internally" alt="" coords="5,81,129,108"/>
+</map>

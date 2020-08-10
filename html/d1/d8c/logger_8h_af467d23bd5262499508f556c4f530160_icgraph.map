@@ -1,0 +1,5 @@
+<map id="logf_func" name="logf_func">
+<area shape="rect" id="node1" title="like log_func but for formatted logs" alt="" coords="372,5,455,32"/>
+<area shape="rect" id="node2" href="$d1/d8c/logger_8h.html#aba435ba2ea5433b4dc792c5d8038a0d1" title="returns a new thread safe logger if with_debug is false, then all debug_log calls will be ignored" alt="" coords="177,5,324,32"/>
+<area shape="rect" id="node3" href="$d1/d8c/logger_8h.html#a346f22d0e57a25484ee39115185ef609" title="returns a new file_logger Calls new_thread_logger internally" alt="" coords="5,5,129,32"/>
+</map>
