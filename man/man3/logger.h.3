@@ -256,7 +256,7 @@ free resources for the file ogger
 .PP
 
 .PP
-Definition at line 313 of file logger\&.c\&.
+Definition at line 353 of file logger\&.c\&.
 .SS "void clear_thread_logger (\fBthread_logger\fP * thl)"
 
 .PP
@@ -269,7 +269,7 @@ free resources for the threaded logger
 .PP
 
 .PP
-Definition at line 305 of file logger\&.c\&.
+Definition at line 342 of file logger\&.c\&.
 .SS "void debug_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -286,7 +286,7 @@ logs a debug styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 279 of file logger\&.c\&.
+Definition at line 310 of file logger\&.c\&.
 .SS "void error_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -303,7 +303,7 @@ logs an error styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 255 of file logger\&.c\&.
+Definition at line 279 of file logger\&.c\&.
 .SS "char* get_time_string ()"
 
 .PP
@@ -316,7 +316,7 @@ make sure to free up the memory allocated when done
 .PP
 
 .PP
-Definition at line 322 of file logger\&.c\&.
+Definition at line 363 of file logger\&.c\&.
 .SS "void info_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -333,7 +333,7 @@ logs an info styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 203 of file logger\&.c\&.
+Definition at line 217 of file logger\&.c\&.
 .SS "void log_func (\fBthread_logger\fP * thl, int file_descriptor, char * message, \fBLOG_LEVELS\fP level, char * file, int line)"
 
 .PP
@@ -352,7 +352,7 @@ main function you should call, which will delegate to the appopriate *_log funct
 .PP
 
 .PP
-Definition at line 157 of file logger\&.c\&.
+Definition at line 169 of file logger\&.c\&.
 .SS "void logf_func (\fBthread_logger\fP * thl, int file_descriptor, \fBLOG_LEVELS\fP level, char * file, int line, char * message,  \&.\&.\&.)"
 
 .PP
@@ -373,7 +373,7 @@ like log_func but for formatted logs
 .PP
 
 .PP
-Definition at line 133 of file logger\&.c\&.
+Definition at line 143 of file logger\&.c\&.
 .SS "\fBfile_logger\fP* new_file_logger (char * output_file, bool with_debug)"
 
 .PP
@@ -386,7 +386,7 @@ returns a new \fBfile_logger\fP Calls new_thread_logger internally
 .PP
 
 .PP
-Definition at line 63 of file logger\&.c\&.
+Definition at line 66 of file logger\&.c\&.
 .SS "\fBthread_logger\fP* new_thread_logger (bool with_debug)"
 
 .PP
@@ -416,7 +416,7 @@ logs a warned styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 227 of file logger\&.c\&.
+Definition at line 248 of file logger\&.c\&.
 .SS "int write_file_log (int file_descriptor, char * message)"
 
 .PP
@@ -433,7 +433,7 @@ used to write a log message to file although this really means a file descriptor
 .PP
 
 .PP
-Definition at line 102 of file logger\&.c\&.
+Definition at line 108 of file logger\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for ulogger from the source code\&.
