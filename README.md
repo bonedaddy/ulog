@@ -49,15 +49,15 @@ clear_thread_logger(thl);
 
 file_logger *fhl = new_file_logger("testfile.log", true);
 
-LOG_INFO(fhl->thl, fhl->file_descriptor, "this is an info log");
-LOG_WARN(fhl->thl, fhl->file_descriptor,"this is a warn log");
-LOG_ERROR(fhl->thl, fhl->file_descriptor, "this is an error log");
-LOG_DEBUG(fhl->thl, fhl->file_descriptor, "this is a debug log");
+LOG_INFO(fhl->thl, fhl->fd, "this is an info log");
+LOG_WARN(fhl->thl, fhl->fd,"this is a warn log");
+LOG_ERROR(fhl->thl, fhl->fd, "this is an error log");
+LOG_DEBUG(fhl->thl, fhl->fd, "this is a debug log");
 
-LOGF_INFO(fhl->thl, fhl->file_descriptor, "this is a %s style info log", "printf");
-LOGF_WARN(fhl->thl, fhl->file_descriptor, "this is a %s style warn log", "printf");
-LOGF_ERROR(fhl->thl, fhl->file_descriptor, "this is a %s style error log", "printf");
-LOGF_DEBUG(fhl->thl, fhl->file_descriptor, "this is a %s style debug log", "printf");
+LOGF_INFO(fhl->thl, fhl->fd, "this is a %s style info log", "printf");
+LOGF_WARN(fhl->thl, fhl->fd, "this is a %s style warn log", "printf");
+LOGF_ERROR(fhl->thl, fhl->fd, "this is a %s style error log", "printf");
+LOGF_DEBUG(fhl->thl, fhl->fd, "this is a %s style debug log", "printf");
 
 clear_file_logger(fhl);
 ```

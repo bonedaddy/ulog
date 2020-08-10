@@ -29,17 +29,17 @@ void *test_thread_log(void *data) {
 
 void *test_file_log(void *data) {
     file_logger *fhl = (file_logger *)data;
-    fhl->thl->log(fhl->thl, fhl->file_descriptor, "this is an info log", LOG_LEVELS_INFO, __FILENAME__, __LINE__);
-    fhl->thl->logf(fhl->thl, fhl->file_descriptor, LOG_LEVELS_INFO, __FILENAME__, __LINE__, "%s\t%s", "one", "two");
+    fhl->thl->log(fhl->thl, fhl->fd, "this is an info log", LOG_LEVELS_INFO, __FILENAME__, __LINE__);
+    fhl->thl->logf(fhl->thl, fhl->fd, LOG_LEVELS_INFO, __FILENAME__, __LINE__, "%s\t%s", "one", "two");
 
-    fhl->thl->log(fhl->thl, fhl->file_descriptor, "this is a warn log", LOG_LEVELS_WARN, __FILENAME__, __LINE__);
-    fhl->thl->logf(fhl->thl, fhl->file_descriptor, LOG_LEVELS_WARN, __FILENAME__, __LINE__, "%s\t%s", "one", "two");
+    fhl->thl->log(fhl->thl, fhl->fd, "this is a warn log", LOG_LEVELS_WARN, __FILENAME__, __LINE__);
+    fhl->thl->logf(fhl->thl, fhl->fd, LOG_LEVELS_WARN, __FILENAME__, __LINE__, "%s\t%s", "one", "two");
 
-    fhl->thl->log(fhl->thl, fhl->file_descriptor, "this is an error log", LOG_LEVELS_ERROR, __FILENAME__, __LINE__);
-    fhl->thl->logf(fhl->thl, fhl->file_descriptor, LOG_LEVELS_ERROR, __FILENAME__, __LINE__, "%s\t%s", "one", "two");
+    fhl->thl->log(fhl->thl, fhl->fd, "this is an error log", LOG_LEVELS_ERROR, __FILENAME__, __LINE__);
+    fhl->thl->logf(fhl->thl, fhl->fd, LOG_LEVELS_ERROR, __FILENAME__, __LINE__, "%s\t%s", "one", "two");
     
-    fhl->thl->log(fhl->thl, fhl->file_descriptor, "this is a debug log", LOG_LEVELS_DEBUG, __FILENAME__, __LINE__);
-    fhl->thl->logf(fhl->thl, fhl->file_descriptor, LOG_LEVELS_DEBUG, __FILENAME__, __LINE__, "%s\t%s", "one", "two");
+    fhl->thl->log(fhl->thl, fhl->fd, "this is a debug log", LOG_LEVELS_DEBUG, __FILENAME__, __LINE__);
+    fhl->thl->logf(fhl->thl, fhl->fd, LOG_LEVELS_DEBUG, __FILENAME__, __LINE__, "%s\t%s", "one", "two");
     // commenting this out seems to get rid of memleaks reported by valgrind
     // pthread_exit(NULL);
     return NULL;
@@ -75,10 +75,10 @@ void test_file_logger(void **state) {
     for (int i = 0; i < 2; i++) {
         file_logger *fhl = new_file_logger("file_logger_test.log", args[i]);
         assert(fhl != NULL);
-        fhl->thl->log(fhl->thl, fhl->file_descriptor, "this is an info log", LOG_LEVELS_INFO, __FILENAME__, __LINE__);
-        fhl->thl->log(fhl->thl, fhl->file_descriptor, "this is a warn log", LOG_LEVELS_WARN, __FILENAME__, __LINE__);
-        fhl->thl->log(fhl->thl, fhl->file_descriptor, "this is an error log", LOG_LEVELS_ERROR, __FILENAME__, __LINE__);
-        fhl->thl->log(fhl->thl, fhl->file_descriptor, "this is a debug log", LOG_LEVELS_DEBUG, __FILENAME__, __LINE__);
+        fhl->thl->log(fhl->thl, fhl->fd, "this is an info log", LOG_LEVELS_INFO, __FILENAME__, __LINE__);
+        fhl->thl->log(fhl->thl, fhl->fd, "this is a warn log", LOG_LEVELS_WARN, __FILENAME__, __LINE__);
+        fhl->thl->log(fhl->thl, fhl->fd, "this is an error log", LOG_LEVELS_ERROR, __FILENAME__, __LINE__);
+        fhl->thl->log(fhl->thl, fhl->fd, "this is a debug log", LOG_LEVELS_DEBUG, __FILENAME__, __LINE__);
         pthread_t threads[4];
         pthread_attr_t attrs[4];
         for (int i = 0; i < 4; i++) {
@@ -201,14 +201,14 @@ void test_demo_log_thread(void **state) {
 
 void test_demo_log_file(void **state) {
     file_logger *fhl = new_file_logger("testfile.log", true);
-    LOG_INFO(fhl->thl, fhl->file_descriptor, "this is an info log");
-    LOG_WARN(fhl->thl, fhl->file_descriptor,"this is a warn log");
-    LOG_ERROR(fhl->thl, fhl->file_descriptor, "this is an error log");
-    LOG_DEBUG(fhl->thl, fhl->file_descriptor, "this is a debug log");
-    LOGF_INFO(fhl->thl, fhl->file_descriptor, "this is a %s style info log", "printf");
-    LOGF_WARN(fhl->thl, fhl->file_descriptor, "this is a %s style warn log", "printf");
-    LOGF_ERROR(fhl->thl, fhl->file_descriptor, "this is a %s style error log", "printf");
-    LOGF_DEBUG(fhl->thl, fhl->file_descriptor, "this is a %s style debug log", "printf");
+    LOG_INFO(fhl->thl, fhl->fd, "this is an info log");
+    LOG_WARN(fhl->thl, fhl->fd,"this is a warn log");
+    LOG_ERROR(fhl->thl, fhl->fd, "this is an error log");
+    LOG_DEBUG(fhl->thl, fhl->fd, "this is a debug log");
+    LOGF_INFO(fhl->thl, fhl->fd, "this is a %s style info log", "printf");
+    LOGF_WARN(fhl->thl, fhl->fd, "this is a %s style warn log", "printf");
+    LOGF_ERROR(fhl->thl, fhl->fd, "this is a %s style error log", "printf");
+    LOGF_DEBUG(fhl->thl, fhl->fd, "this is a %s style debug log", "printf");
 
     clear_file_logger(fhl);
 }
