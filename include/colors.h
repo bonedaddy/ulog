@@ -47,7 +47,11 @@ typedef enum {
     COLORS_RESET
 } COLORS;
 
-/*! @brief returns a `char *` with the message formatted with ansi colors
+/*! @brief prefixes a message with the given ANSI color code
+ * @return Success: char pointer containing the message prefixed with the ANSI color
+ * code
+ * @return Failure: NULL pointer
+ * @note you must free up the allocate memory for the returned vlaue
  */
 char *format_colored(COLORS color, char *message);
 
@@ -59,8 +63,9 @@ char *get_ansi_color_scheme(COLORS color);
  */
 void print_colored(COLORS color, char *message);
 
-/*! @brief writes a message to fh with the given color
- * For "sync writes" and to always flush logs to disk immediately set do_flush to
- * true returns 0 if no error, returns 1 if error
+/*! @brief is like print_colored except it writes the data into the given file
+ * descriptor
+ * @return Success: 0
+ * @return Failure: 1
  */
 int write_colored(COLORS color, int file_descriptor, char *message);
