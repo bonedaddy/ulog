@@ -20,6 +20,7 @@
 /*! @brief returns an ansi color string to be used with printf
  */
 char *get_ansi_color_scheme(COLORS color) {
+
     switch (color) {
         case COLORS_RED:
             return ANSI_COLOR_RED;
@@ -49,17 +50,21 @@ char *get_ansi_color_scheme(COLORS color) {
  * @note you must free up the allocate memory for the returned vlaue
  */
 char *format_colored(COLORS color, char *message) {
+
     char *pcolor = get_ansi_color_scheme(color);
     if (pcolor == NULL) {
         return NULL;
     }
+
     char *formatted = malloc(sizeof(message) + sizeof(pcolor));
     if (formatted == NULL) {
         printf("failed to format colored string\n");
         return NULL;
     }
+
     strcat(formatted, pcolor);
     strcat(formatted, message);
+
     return formatted;
 }
 
@@ -75,30 +80,37 @@ void print_colored(COLORS color, char *message) {
  * @return Failure: 1
  */
 int write_colored(COLORS color, int file_descriptor, char *message) {
+
     char *pcolor = get_ansi_color_scheme(color);
     if (pcolor == NULL) {
         return -1;
     }
+
     char *reset = get_ansi_color_scheme(COLORS_RESET);
     if (reset == NULL) {
         return -1;
     }
-    // 2 for \n
+
     char *write_message =
-        calloc(1, strlen(pcolor) + strlen(reset) + strlen(message) + 2);
+        calloc(1, strlen(pcolor) + strlen(reset) + strlen(message) + 2); // 2 for \n
     if (write_message == NULL) {
         printf("failed to calloc write_message\n");
         return -1;
     }
+
     strcat(write_message, pcolor);
     strcat(write_message, message);
     strcat(write_message, reset);
     strcat(write_message, "\n");
+
     int response = write(file_descriptor, write_message, strlen(write_message));
+
     free(write_message);
+
     if (response == -1) {
         printf("failed to write colored message\n");
         return response;
     }
+
     return 0;
 }
