@@ -86,10 +86,86 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">ulog </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>ulog (uber log) is a threadsafe logger that is well tested with file and std output, as well as color coded messages. </p>
+<div class="textblock"><p><img src="./example.png" alt="" class="inline"/></p>
+<p><code>ulog</code> (uber log) is a lightweight and threadsafe logging library for C based programs. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind.</p>
+<p>If not using debug logging then any DEBUG level log calls are silently skipped. The logger is threadsafe in that multiple threads can't log at the same time. In practice even when logging from multiple threads there is very little contention.</p>
+<p>On average the logger consumed roughly 4KB of memory at any one time, however during initialization the memory consumed peaks at around 7KB.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+why another logging library?</h1>
+<p>I wanted a simple logging library that didnt leak memory, was well tested, and capable of color coded output. All logging libraries I found were complex code bases, leaked memory, and relied on global variables. Because of that, and as a way to better learn C development <code>ulog</code> was born.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+installation</h1>
+<p>To install you can simply copy and paste the <code><a class="el" href="d1/d8c/logger_8h.html" title="a thread safe logger with optional printf style logging">logger.h</a></code>, <code><a class="el" href="da/dd8/colors_8h.html" title="macros and utilities for printing color to stdout from https://www.quora.com/How-do-I-print-a-colored...">colors.h</a></code>, <code><a class="el" href="d1/d22/logger_8c.html" title="a thread safe logger with optional printf style logging">logger.c</a></code>, and <code><a class="el" href="d3/d13/colors_8c.html">colors.c</a></code> files into whatever project you are working on.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+usage</h1>
+<p>The following code samples produce the output shown in the screenshot at the start of the readme.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+No File Logging</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdbool.H&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d1/d8c/logger_8h.html">logger.h</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="da/da5/structthread__logger.html">thread_logger</a> *thl = <a class="code" href="d1/d22/logger_8c.html#aba435ba2ea5433b4dc792c5d8038a0d1">new_thread_logger</a>(<span class="keyword">true</span>);</div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a663c757fa1a7b61074f6da01acabbd12">LOG_INFO</a>(thl, 0, <span class="stringliteral">&quot;this is an info log&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a10ef0ebfb4079b7270f555fae9a10e12">LOG_WARN</a>(thl, 0, <span class="stringliteral">&quot;this is a warn log&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a9d912cd3694fbcbdfb204b29f2345422">LOG_ERROR</a>(thl, 0, <span class="stringliteral">&quot;this is an error log&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#ad1946d2d37922323bc8800c6cfff91af">LOG_DEBUG</a>(thl, 0, <span class="stringliteral">&quot;this is a debug log&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// the LOGF_ prefixed functions can be used for printf styled output</span></div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a29dbd2356dc6f23cdba5fafde6873771">LOGF_INFO</a>(thl, 0, <span class="stringliteral">&quot;this is a %s style info log&quot;</span>, <span class="stringliteral">&quot;printf&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a5d765dc8f0829d66174c23413539db0c">LOGF_WARN</a>(thl, 0, <span class="stringliteral">&quot;this is a %s style warn log&quot;</span>, <span class="stringliteral">&quot;printf&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a7bdb2ee39fb10f7ced0e14735158aba4">LOGF_ERROR</a>(thl, 0, <span class="stringliteral">&quot;this is a %s style error log&quot;</span>, <span class="stringliteral">&quot;printf&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a55930c941161b084e39cd6436de028f0">LOGF_DEBUG</a>(thl, 0, <span class="stringliteral">&quot;this is a %s style debug log&quot;</span>, <span class="stringliteral">&quot;printf&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// free up memory when you no longer need the logger</span></div>
+<div class="line"><span class="comment">// note: after this returns thl is no logner safe to use</span></div>
+<div class="line"><a class="code" href="d1/d22/logger_8c.html#a8cf74430151bf53ab52b8b94788186af">clear_thread_logger</a>(thl);</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
+File Logging</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d1/d8c/logger_8h.html">logger.h</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="d5/d99/structfile__logger.html">file_logger</a> *fhl = <a class="code" href="d1/d22/logger_8c.html#a346f22d0e57a25484ee39115185ef609">new_file_logger</a>(<span class="stringliteral">&quot;testfile.log&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a663c757fa1a7b61074f6da01acabbd12">LOG_INFO</a>(fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">thl</a>, fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a8941b738dac7be290516753e6da9a514">fd</a>, <span class="stringliteral">&quot;this is an info log&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a10ef0ebfb4079b7270f555fae9a10e12">LOG_WARN</a>(fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">thl</a>, fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a8941b738dac7be290516753e6da9a514">fd</a>,<span class="stringliteral">&quot;this is a warn log&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a9d912cd3694fbcbdfb204b29f2345422">LOG_ERROR</a>(fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">thl</a>, fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a8941b738dac7be290516753e6da9a514">fd</a>, <span class="stringliteral">&quot;this is an error log&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#ad1946d2d37922323bc8800c6cfff91af">LOG_DEBUG</a>(fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">thl</a>, fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a8941b738dac7be290516753e6da9a514">fd</a>, <span class="stringliteral">&quot;this is a debug log&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a29dbd2356dc6f23cdba5fafde6873771">LOGF_INFO</a>(fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">thl</a>, fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a8941b738dac7be290516753e6da9a514">fd</a>, <span class="stringliteral">&quot;this is a %s style info log&quot;</span>, <span class="stringliteral">&quot;printf&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a5d765dc8f0829d66174c23413539db0c">LOGF_WARN</a>(fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">thl</a>, fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a8941b738dac7be290516753e6da9a514">fd</a>, <span class="stringliteral">&quot;this is a %s style warn log&quot;</span>, <span class="stringliteral">&quot;printf&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a7bdb2ee39fb10f7ced0e14735158aba4">LOGF_ERROR</a>(fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">thl</a>, fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a8941b738dac7be290516753e6da9a514">fd</a>, <span class="stringliteral">&quot;this is a %s style error log&quot;</span>, <span class="stringliteral">&quot;printf&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a55930c941161b084e39cd6436de028f0">LOGF_DEBUG</a>(fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">thl</a>, fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a8941b738dac7be290516753e6da9a514">fd</a>, <span class="stringliteral">&quot;this is a %s style debug log&quot;</span>, <span class="stringliteral">&quot;printf&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// if you dont want to loger to a file and just stdout, simply set the `fhl-&gt;fd` value to 0</span></div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a663c757fa1a7b61074f6da01acabbd12">LOG_INFO</a>(fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">thl</a>, 0, <span class="stringliteral">&quot;this will only log to stdout&quot;</span>);</div>
+<div class="line"><a class="code" href="d1/d8c/logger_8h.html#a29dbd2356dc6f23cdba5fafde6873771">LOGF_INFO</a>(fhl-&gt;<a class="code" href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">thl</a>, 0, <span class="stringliteral">&quot;this will only log to %s&quot;</span>, <span class="stringliteral">&quot;stdout&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="d1/d22/logger_8c.html#acb35852b4fbddea293c8aa641f5e5524">clear_file_logger</a>(fhl);</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md6"></a>
+license</h1>
+<p>AGPLv3 licensed, although if you want commercial license under MIT that can be aranged for a small fee. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="alogger_8h_html_a7bdb2ee39fb10f7ced0e14735158aba4"><div class="ttname"><a href="d1/d8c/logger_8h.html#a7bdb2ee39fb10f7ced0e14735158aba4">LOGF_ERROR</a></div><div class="ttdeci">#define LOGF_ERROR(thl, fd, msg,...)</div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00047">logger.h:47</a></div></div>
+<div class="ttc" id="alogger_8h_html_a10ef0ebfb4079b7270f555fae9a10e12"><div class="ttname"><a href="d1/d8c/logger_8h.html#a10ef0ebfb4079b7270f555fae9a10e12">LOG_WARN</a></div><div class="ttdeci">#define LOG_WARN(thl, fd, msg)</div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00037">logger.h:37</a></div></div>
+<div class="ttc" id="astructfile__logger_html_a8941b738dac7be290516753e6da9a514"><div class="ttname"><a href="d5/d99/structfile__logger.html#a8941b738dac7be290516753e6da9a514">file_logger::fd</a></div><div class="ttdeci">int fd</div><div class="ttdoc">the underlying threadsafe logger used for sycnhronization and the actual logging</div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00121">logger.h:121</a></div></div>
+<div class="ttc" id="alogger_8c_html_a8cf74430151bf53ab52b8b94788186af"><div class="ttname"><a href="d1/d22/logger_8c.html#a8cf74430151bf53ab52b8b94788186af">clear_thread_logger</a></div><div class="ttdeci">void clear_thread_logger(thread_logger *thl)</div><div class="ttdoc">free resources for the threaded logger</div><div class="ttdef"><b>Definition:</b> <a href="d1/d22/logger_8c_source.html#l00305">logger.c:305</a></div></div>
+<div class="ttc" id="alogger_8h_html"><div class="ttname"><a href="d1/d8c/logger_8h.html">logger.h</a></div><div class="ttdoc">a thread safe logger with optional printf style logging</div></div>
+<div class="ttc" id="alogger_8h_html_a29dbd2356dc6f23cdba5fafde6873771"><div class="ttname"><a href="d1/d8c/logger_8h.html#a29dbd2356dc6f23cdba5fafde6873771">LOGF_INFO</a></div><div class="ttdeci">#define LOGF_INFO(thl, fd, msg,...)</div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00043">logger.h:43</a></div></div>
+<div class="ttc" id="alogger_8c_html_acb35852b4fbddea293c8aa641f5e5524"><div class="ttname"><a href="d1/d22/logger_8c.html#acb35852b4fbddea293c8aa641f5e5524">clear_file_logger</a></div><div class="ttdeci">void clear_file_logger(file_logger *fhl)</div><div class="ttdoc">free resources for the file ogger</div><div class="ttdef"><b>Definition:</b> <a href="d1/d22/logger_8c_source.html#l00313">logger.c:313</a></div></div>
+<div class="ttc" id="astructfile__logger_html_a4bb1d58ec1da75fa70588a701b0089d6"><div class="ttname"><a href="d5/d99/structfile__logger.html#a4bb1d58ec1da75fa70588a701b0089d6">file_logger::thl</a></div><div class="ttdeci">thread_logger * thl</div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00119">logger.h:119</a></div></div>
+<div class="ttc" id="alogger_8h_html_a9d912cd3694fbcbdfb204b29f2345422"><div class="ttname"><a href="d1/d8c/logger_8h.html#a9d912cd3694fbcbdfb204b29f2345422">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(thl, fd, msg)</div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00039">logger.h:39</a></div></div>
+<div class="ttc" id="alogger_8h_html_a55930c941161b084e39cd6436de028f0"><div class="ttname"><a href="d1/d8c/logger_8h.html#a55930c941161b084e39cd6436de028f0">LOGF_DEBUG</a></div><div class="ttdeci">#define LOGF_DEBUG(thl, fd, msg,...)</div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00049">logger.h:49</a></div></div>
+<div class="ttc" id="alogger_8c_html_a346f22d0e57a25484ee39115185ef609"><div class="ttname"><a href="d1/d22/logger_8c.html#a346f22d0e57a25484ee39115185ef609">new_file_logger</a></div><div class="ttdeci">file_logger * new_file_logger(char *output_file, bool with_debug)</div><div class="ttdoc">returns a new file_logger Calls new_thread_logger internally</div><div class="ttdef"><b>Definition:</b> <a href="d1/d22/logger_8c_source.html#l00063">logger.c:63</a></div></div>
+<div class="ttc" id="astructthread__logger_html"><div class="ttname"><a href="da/da5/structthread__logger.html">thread_logger</a></div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00103">logger.h:103</a></div></div>
+<div class="ttc" id="alogger_8h_html_ad1946d2d37922323bc8800c6cfff91af"><div class="ttname"><a href="d1/d8c/logger_8h.html#ad1946d2d37922323bc8800c6cfff91af">LOG_DEBUG</a></div><div class="ttdeci">#define LOG_DEBUG(thl, fd, msg)</div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00041">logger.h:41</a></div></div>
+<div class="ttc" id="astructfile__logger_html"><div class="ttname"><a href="d5/d99/structfile__logger.html">file_logger</a></div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00118">logger.h:118</a></div></div>
+<div class="ttc" id="alogger_8h_html_a663c757fa1a7b61074f6da01acabbd12"><div class="ttname"><a href="d1/d8c/logger_8h.html#a663c757fa1a7b61074f6da01acabbd12">LOG_INFO</a></div><div class="ttdeci">#define LOG_INFO(thl, fd, msg)</div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00035">logger.h:35</a></div></div>
+<div class="ttc" id="alogger_8c_html_aba435ba2ea5433b4dc792c5d8038a0d1"><div class="ttname"><a href="d1/d22/logger_8c.html#aba435ba2ea5433b4dc792c5d8038a0d1">new_thread_logger</a></div><div class="ttdeci">thread_logger * new_thread_logger(bool with_debug)</div><div class="ttdoc">returns a new thread safe logger if with_debug is false, then all debug_log calls will be ignored</div><div class="ttdef"><b>Definition:</b> <a href="d1/d22/logger_8c_source.html#l00043">logger.c:43</a></div></div>
+<div class="ttc" id="alogger_8h_html_a5d765dc8f0829d66174c23413539db0c"><div class="ttname"><a href="d1/d8c/logger_8h.html#a5d765dc8f0829d66174c23413539db0c">LOGF_WARN</a></div><div class="ttdeci">#define LOGF_WARN(thl, fd, msg,...)</div><div class="ttdef"><b>Definition:</b> <a href="d1/d8c/logger_8h_source.html#l00045">logger.h:45</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

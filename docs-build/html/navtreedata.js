@@ -23,7 +23,15 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "ulogger", "index.html", [
-    [ "ulog", "index.html", null ],
+    [ "ulog", "index.html", [
+      [ "why another logging library?", "index.html#autotoc_md1", null ],
+      [ "installation", "index.html#autotoc_md2", null ],
+      [ "usage", "index.html#autotoc_md3", [
+        [ "No File Logging", "index.html#autotoc_md4", null ],
+        [ "File Logging", "index.html#autotoc_md5", null ]
+      ] ],
+      [ "license", "index.html#autotoc_md6", null ]
+    ] ],
     [ "Todo List", "dd/da0/todo.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
