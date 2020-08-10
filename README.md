@@ -6,6 +6,8 @@
 
 If not using debug logging then any DEBUG level log calls are silently skipped. The logger is threadsafe in that multiple threads can't log at the same time. In practice even when logging from multiple threads there is very little contention.
 
+On average the logger consumed roughly 4KB of memory at any one time, however during initialization the memory consumed peaks at around 7KB.
+
 # why another logging library?
 
 I wanted a simple logging library that didnt leak memory, was well tested, and capable of color coded output. All logging libraries I found were complex code bases, leaked memory, and relied on global variables. Because of that, and as a way to better learn C development `ulog` was born.
