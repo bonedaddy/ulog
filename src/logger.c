@@ -302,6 +302,8 @@ void debug_log(thread_logger *thl, int file_descriptor, char *message) {
  * @param thl the thread_logger instance to free memory for
  */
 void clear_thread_logger(thread_logger *thl) {
+    pthread_mutex_lock(&thl->mutex); // lock before destroying
+    pthread_mutex_destroy(&thl->mutex);
     free(thl);
 }
 
