@@ -44,6 +44,7 @@ clear_thread_logger(thl);
 
 
 file_logger *fhl = new_file_logger("testfile.log", true);
+
 LOG_INFO(fhl->thl, fhl->file_descriptor, "this is an info log");
 LOG_WARN(fhl->thl, fhl->file_descriptor,"this is a warn log");
 LOG_ERROR(fhl->thl, fhl->file_descriptor, "this is an error log");
