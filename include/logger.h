@@ -101,13 +101,13 @@ typedef void (*log_fnf)(struct thread_logger *thl, int file_descriptor,
  * functions directly
  */
 typedef struct thread_logger {
-    // todo(bonedaddy): make atomic
-    bool debug;
-    pthread_mutex_t mutex;
-    mutex_fn lock;
-    mutex_fn unlock;
-    log_fn log;
-    log_fnf logf;
+    bool debug; /*! @brief indicates whether we will action on debug logs */
+    pthread_mutex_t mutex; /*! @brief used for synchronization across threads */
+    mutex_fn lock;         /*! @brief helper function for pthread_mutex_lock */
+    mutex_fn unlock;       /*! @brief helper function for pthread_mutex_unlock */
+    log_fn log; /*! @brief function that gets called for all regular logging */
+    log_fnf
+        logf; /*! @brief function that gets called for all printf style logging */
 } thread_logger;
 
 /*! @typedef a wrapper around thread_logger that enables file logging
@@ -116,7 +116,8 @@ typedef struct thread_logger {
  *  - enable log rotation
  */
 typedef struct file_logger {
-    thread_logger *thl; /*! @brief the underlying threadsafe logger used for sycnhronization and the actual logging */
+    thread_logger *thl; /*! @brief the underlying threadsafe logger used for
+                           sycnhronization and the actual logging */
     int fd; /*! @brief the file descriptor used for sending log information to */
 } file_logger;
 
@@ -199,10 +200,16 @@ void error_log(thread_logger *thl, int file_descriptor, char *message);
  */
 void info_log(thread_logger *thl, int file_descriptor, char *message);
 
-/*! @brief used to write a log message to file
+/*! @brief used to write a log message to file although this really means a file
+ * descriptor
  * @param thl pointer to an instance of thread_logger
  * @param file_descriptor file descriptor to write log messages to in addition to
  * stdout logging. if 0 only stdout is used
  * @param message the actuall message to log
  */
 int write_file_log(int file_descriptor, char *message);
+
+/*! @brief returns a timestamp of format `Jul 06 10:12:20 PM`
+ * @note make sure to free up the memory allocated when done
+ */
+char *get_time_string();

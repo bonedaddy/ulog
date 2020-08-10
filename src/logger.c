@@ -35,10 +35,11 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-/*! @brief private function that returns a timestamp of format `Jul 06 10:12:20 PM`
+/*! @brief returns a new thread safe logger
+ * if with_debug is false, then all debug_log calls will be ignored
+ * @param with_debug whether to enable debug logging, if false debug log calls will
+ * be ignored
  */
-char *get_time_string();
-
 thread_logger *new_thread_logger(bool with_debug) {
     thread_logger *thl = malloc(sizeof(thread_logger));
     if (thl == NULL) {
@@ -54,6 +55,11 @@ thread_logger *new_thread_logger(bool with_debug) {
     return thl;
 }
 
+/*! @brief returns a new file_logger
+ * Calls new_thread_logger internally
+ * @param output_file the file we will dump logs to. created if not exists and is
+ * appended to
+ */
 file_logger *new_file_logger(char *output_file, bool with_debug) {
     thread_logger *thl = new_thread_logger(with_debug);
     if (thl == NULL) {
@@ -86,6 +92,13 @@ file_logger *new_file_logger(char *output_file, bool with_debug) {
     return fhl;
 }
 
+/*! @brief used to write a log message to file although this really means a file
+ * descriptor
+ * @param thl pointer to an instance of thread_logger
+ * @param file_descriptor file descriptor to write log messages to in addition to
+ * stdout logging. if 0 only stdout is used
+ * @param message the actuall message to log
+ */
 int write_file_log(int file_descriptor, char *message) {
     // 2 for \n
     char *msg = calloc(1, strlen(message) + 2);
@@ -109,6 +122,14 @@ int write_file_log(int file_descriptor, char *message) {
     return response;
 }
 
+/*! @brief like log_func but for formatted logs
+ * @param thl pointer to an instance of thread_logger
+ * @param file_descriptor file descriptor to write log messages to, if 0 then only
+ * stdout is used
+ * @param level the log level to use (effects color used)
+ * @param message format string like `<percent-sign>sFOO<percent-sign>sBAR`
+ * @param ... values to supply to message
+ */
 void logf_func(thread_logger *thl, int file_descriptor, LOG_LEVELS level, char *file,
                int line, char *message, ...) {
     va_list args;
@@ -125,7 +146,14 @@ void logf_func(thread_logger *thl, int file_descriptor, LOG_LEVELS level, char *
     log_func(thl, file_descriptor, msg, level, file, line);
 }
 
-#pragma GCC diagnostic ignored "-Wunused-parameter"
+/*! @brief main function you should call, which will delegate to the appopriate *_log
+ * function
+ * @param thl pointer to an instance of thread_logger
+ * @param file_descriptor file descriptor to write log messages to, if 0 then only
+ * stdout is used
+ * @param message the actual message we want to log
+ * @param level the log level to use (effects color used)
+ */
 void log_func(thread_logger *thl, int file_descriptor, char *message,
               LOG_LEVELS level, char *file, int line) {
     char *time_str = get_time_string();
@@ -166,6 +194,12 @@ void log_func(thread_logger *thl, int file_descriptor, char *message,
     free(time_str);
 }
 
+/*! @brief logs an info styled message - called by log_fn
+ * @param thl pointer to an instance of thread_logger
+ * @param file_descriptor file descriptor to write log messages to in addition to
+ * stdout logging. if 0 only stdout is used
+ * @param message the actuall message to log
+ */
 void info_log(thread_logger *thl, int file_descriptor, char *message) {
     thl->lock(&thl->mutex);
     // 2 = 1 for null terminator, 1 for space after ]
@@ -184,6 +218,12 @@ void info_log(thread_logger *thl, int file_descriptor, char *message) {
     free(msg);
 }
 
+/*! @brief logs a warned styled message - called by log_fn
+ * @param thl pointer to an instance of thread_logger
+ * @param file_descriptor file descriptor to write log messages to in addition to
+ * stdout logging. if 0 only stdout is used
+ * @param message the actuall message to log
+ */
 void warn_log(thread_logger *thl, int file_descriptor, char *message) {
     thl->lock(&thl->mutex);
     // 2 = 1 for null terminator, 1 for space after ]
@@ -206,6 +246,12 @@ void warn_log(thread_logger *thl, int file_descriptor, char *message) {
     free(msg);
 }
 
+/*! @brief logs an error styled message - called by log_fn
+ * @param thl pointer to an instance of thread_logger
+ * @param file_descriptor file descriptor to write log messages to in addition to
+ * stdout logging. if 0 only stdout is used
+ * @param message the actuall message to log
+ */
 void error_log(thread_logger *thl, int file_descriptor, char *message) {
     thl->lock(&thl->mutex);
     // 2 = 1 for null terminator, 1 for space after ]
@@ -224,6 +270,12 @@ void error_log(thread_logger *thl, int file_descriptor, char *message) {
     free(msg);
 }
 
+/*! @brief logs a debug styled message - called by log_fn
+ * @param thl pointer to an instance of thread_logger
+ * @param file_descriptor file descriptor to write log messages to in addition to
+ * stdout logging. if 0 only stdout is used
+ * @param message the actuall message to log
+ */
 void debug_log(thread_logger *thl, int file_descriptor, char *message) {
     // unless debug enabled dont show
     if (thl->debug == false) {
@@ -247,16 +299,26 @@ void debug_log(thread_logger *thl, int file_descriptor, char *message) {
     free(msg);
 }
 
+/*! @brief free resources for the threaded logger
+ * @param thl the thread_logger instance to free memory for
+ */
 void clear_thread_logger(thread_logger *thl) {
     free(thl);
 }
 
+/*! @brief free resources for the file ogger
+ * @param fhl the file_logger instance to free memory for. also frees memory for the
+ * embedded thread_logger and closes the open file
+ */
 void clear_file_logger(file_logger *fhl) {
     close(fhl->fd);
     clear_thread_logger(fhl->thl);
     free(fhl);
 }
 
+/*! @brief returns a timestamp of format `Jul 06 10:12:20 PM`
+ * @note make sure to free up the memory allocated when done
+ */
 char *get_time_string() {
     char date[75];
     strftime(date, sizeof date, "%b %d %r", localtime(&(time_t){time(NULL)}));
