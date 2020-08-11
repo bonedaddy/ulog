@@ -31,23 +31,99 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define LOGGER_VERSION '0.0.1'
+#define LOGGER_VERSION '0.0.2-rc1'
 
+/*!
+ * @brief strips leading path from __FILE__
+ */
 #define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+
+/*!
+ * @brief used to emit a standard INFO log
+ * @param thl an instance of thread_logger, passing anything other than an
+ * initialized thread_logger will result in undefined benhavior
+ * @param fd the file descriptor to log to, set to 0 if you just want stdout logging
+ * @param msg the actual message to log
+ */
 #define LOG_INFO(thl, fd, msg) \
     thl->log(thl, fd, msg, LOG_LEVELS_INFO, __FILENAME__, __LINE__);
+
+/*!
+ * @brief used to emit a standard WARN log
+ * @param thl an instance of thread_logger, passing anything other than an
+ * initialized thread_logger will result in undefined benhavior
+ * @param fd the file descriptor to log to, set to 0 if you just want stdout logging
+ * @param msg the actual message to log
+ */
 #define LOG_WARN(thl, fd, msg) \
     thl->log(thl, fd, msg, LOG_LEVELS_WARN, __FILENAME__, __LINE__);
+
+/*!
+ * @brief used to emit a standard ERROR log
+ * @param thl an instance of thread_logger, passing anything other than an
+ * initialized thread_logger will result in undefined benhavior
+ * @param fd the file descriptor to log to, set to 0 if you just want stdout logging
+ * @param msg the actual message to log
+ */
 #define LOG_ERROR(thl, fd, msg) \
     thl->log(thl, fd, msg, LOG_LEVELS_ERROR, __FILENAME__, __LINE__);
+
+/*!
+ * @brief used to emit a standard DEBUG log
+ * @param thl an instance of thread_logger, passing anything other than an
+ * initialized thread_logger will result in undefined benhavior
+ * @param fd the file descriptor to log to, set to 0 if you just want stdout logging
+ * @param msg the actual message to log
+ * @note if logger is created without debug enabled, this is a noop
+ */
 #define LOG_DEBUG(thl, fd, msg) \
     thl->log(thl, fd, msg, LOG_LEVELS_DEBUG, __FILENAME__, __LINE__);
+
+/*!
+ * @brief used to emit a printf INFO log
+ * @param thl an instance of thread_logger, passing anything other than an
+ * initialized thread_logger will result in undefined benhavior
+ * @param fd the file descriptor to log to, set to 0 if you just want stdout logging
+ * @param msg the actual message to log
+ * @param msg the printf styled message to format
+ * @param ... the arguments to use for formatting
+ */
 #define LOGF_INFO(thl, fd, msg, ...) \
     thl->logf(thl, fd, LOG_LEVELS_INFO, __FILENAME__, __LINE__, msg, __VA_ARGS__);
+
+/*!
+ * @brief used to emit a printf WARN log
+ * @param thl an instance of thread_logger, passing anything other than an
+ * initialized thread_logger will result in undefined benhavior
+ * @param fd the file descriptor to log to, set to 0 if you just want stdout logging
+ * @param msg the actual message to log
+ * @param msg the printf styled message to format
+ * @param ... the arguments to use for formatting
+ */
 #define LOGF_WARN(thl, fd, msg, ...) \
     thl->logf(thl, fd, LOG_LEVELS_WARN, __FILENAME__, __LINE__, msg, __VA_ARGS__);
+
+/*!
+ * @brief used to emit a printf ERROR log
+ * @param thl an instance of thread_logger, passing anything other than an
+ * initialized thread_logger will result in undefined benhavior
+ * @param fd the file descriptor to log to, set to 0 if you just want stdout logging
+ * @param msg the actual message to log
+ * @param msg the printf styled message to format
+ * @param ... the arguments to use for formatting
+ */
 #define LOGF_ERROR(thl, fd, msg, ...) \
     thl->logf(thl, fd, LOG_LEVELS_ERROR, __FILENAME__, __LINE__, msg, __VA_ARGS__);
+
+/*!
+ * @brief used to emit a printf DEBUG log
+ * @param thl an instance of thread_logger, passing anything other than an
+ * initialized thread_logger will result in undefined benhavior
+ * @param fd the file descriptor to log to, set to 0 if you just want stdout logging
+ * @param msg the printf styled message to format
+ * @param ... the arguments to use for formatting
+ * @note if logger is created without debug enabled, this is a noop
+ */
 #define LOGF_DEBUG(thl, fd, msg, ...) \
     thl->logf(thl, fd, LOG_LEVELS_DEBUG, __FILENAME__, __LINE__, msg, __VA_ARGS__);
 
@@ -118,9 +194,9 @@ typedef struct thread_logger {
  *  - enable log rotation
  */
 typedef struct file_logger {
+    int fd; /*! @brief the file descriptor used for sending log information to */
     thread_logger *thl; /*! @brief the underlying threadsafe logger used for
                            sycnhronization and the actual logging */
-    int fd; /*! @brief the file descriptor used for sending log information to */
 } file_logger;
 
 /*! @brief returns a new thread safe logger
@@ -212,6 +288,9 @@ void info_log(thread_logger *thl, int file_descriptor, char *message);
 int write_file_log(int file_descriptor, char *message);
 
 /*! @brief returns a timestamp of format `Jul 06 10:12:20 PM`
- * @note make sure to free up the memory allocated when done
+ * @warning providing an input buffer whose length isnt at least 76 bytes will result
+ * in undefined behavior
+ * @param date_buffer the buffer to write the timestamp into
+ * @param date_buffer_len the size of the buffer
  */
-char *get_time_string();
+void get_time_string(char *date_buffer, size_t date_buffer_len);
