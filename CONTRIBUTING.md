@@ -6,6 +6,7 @@
 * All code must pass valgrind testing with `ctest -T memcheck`
 * All code must be formatted with `make format`
 * All newly written typedefs, global variables, function declarations, etc.. must having valid doxygen comments
+* All commits must be GPG signed
 
 # Memory Allocations
 
