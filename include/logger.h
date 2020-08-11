@@ -118,9 +118,9 @@ typedef struct thread_logger {
  *  - enable log rotation
  */
 typedef struct file_logger {
+    int fd; /*! @brief the file descriptor used for sending log information to */
     thread_logger *thl; /*! @brief the underlying threadsafe logger used for
                            sycnhronization and the actual logging */
-    int fd; /*! @brief the file descriptor used for sending log information to */
 } file_logger;
 
 /*! @brief returns a new thread safe logger

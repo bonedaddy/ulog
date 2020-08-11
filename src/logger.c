@@ -107,11 +107,8 @@ file_logger *new_file_logger(char *output_file, bool with_debug) {
  */
 int write_file_log(int file_descriptor, char *message) {
 
-    char *msg = calloc(1, strlen(message) + 2); // 2 for \n
-    if (msg == NULL) {
-        printf("failed to calloc msg\n");
-        return -1;
-    }
+    char msg[strlen(message) + 2]; // 2 for \n
+    memset(msg, 0, sizeof(msg));
 
     strcat(msg, message);
     strcat(msg, "\n");
@@ -126,8 +123,6 @@ int write_file_log(int file_descriptor, char *message) {
         // number of bytes written
         response = 0;
     }
-
-    free(msg);
 
     return response;
 }
@@ -216,12 +211,10 @@ void log_func(thread_logger *thl, int file_descriptor, char *message,
  */
 void info_log(thread_logger *thl, int file_descriptor, char *message) {
 
-    char *msg = calloc(1, strlen(message) + strlen("[info - ") +
-                              2); // 2, 1 for null terminator and 1 for space after ]
-    if (msg == NULL) {
-        printf("failed to calloc info_log msg");
-        return;
-    }
+    // 2, 1 for null terminator and 1 for space after ]
+    size_t msg_size = strlen(message) + strlen("[info - ") + 2;
+    char msg[msg_size];
+    memset(msg, 0, sizeof(msg));
 
     thl->lock(&thl->mutex);
 
@@ -235,8 +228,6 @@ void info_log(thread_logger *thl, int file_descriptor, char *message) {
     print_colored(COLORS_GREEN, msg);
 
     thl->unlock(&thl->mutex);
-
-    free(msg);
 }
 
 /*! @brief logs a warned styled message - called by log_fn
@@ -247,12 +238,10 @@ void info_log(thread_logger *thl, int file_descriptor, char *message) {
  */
 void warn_log(thread_logger *thl, int file_descriptor, char *message) {
 
-    char *msg = calloc(1, strlen(message) + strlen("[warn - ") +
-                              2); // 2, 1 for null terminator and 1 for space after ]
-    if (msg == NULL) {
-        printf("failed to calloc warn_log msg");
-        return;
-    }
+    // 2, 1 for null terminator and 1 for space after ]
+    size_t msg_size = strlen(message) + strlen("[warn - ") + 2;
+    char msg[msg_size];
+    memset(msg, 0, sizeof(msg));
 
     thl->lock(&thl->mutex);
 
@@ -266,8 +255,6 @@ void warn_log(thread_logger *thl, int file_descriptor, char *message) {
     print_colored(COLORS_YELLOW, msg);
 
     thl->unlock(&thl->mutex);
-
-    free(msg);
 }
 
 /*! @brief logs an error styled message - called by log_fn
@@ -278,12 +265,10 @@ void warn_log(thread_logger *thl, int file_descriptor, char *message) {
  */
 void error_log(thread_logger *thl, int file_descriptor, char *message) {
 
-    char *msg = calloc(1, strlen(message) + strlen("[error - ") +
-                              2); // 2, 1 for null terminator and 1 for space after ]
-    if (msg == NULL) {
-        printf("failed to calloc error_log msg");
-        return;
-    }
+    // 2, 1 for null terminator and 1 for space after ]
+    size_t msg_size = strlen(message) + strlen("[error - ") + 2;
+    char msg[msg_size];
+    memset(msg, 0, sizeof(msg));
 
     thl->lock(&thl->mutex);
 
@@ -297,8 +282,6 @@ void error_log(thread_logger *thl, int file_descriptor, char *message) {
     print_colored(COLORS_RED, msg);
 
     thl->unlock(&thl->mutex);
-
-    free(msg);
 }
 
 /*! @brief logs a debug styled message - called by log_fn
@@ -313,12 +296,10 @@ void debug_log(thread_logger *thl, int file_descriptor, char *message) {
         return;
     }
 
-    char *msg = calloc(1, strlen(message) + strlen("[debug - ") +
-                              2); // 2, 1 for null terminator and 1 for space after ]
-    if (msg == NULL) {
-        printf("failed to calloc debug_log msg");
-        return;
-    }
+    // 2, 1 for null terminator and 1 for space after ]
+    size_t msg_size = strlen(message) + strlen("[debug - ") + 2;
+    char msg[msg_size];
+    memset(msg, 0, sizeof(msg));
 
     thl->lock(&thl->mutex);
 
@@ -332,8 +313,6 @@ void debug_log(thread_logger *thl, int file_descriptor, char *message) {
     print_colored(COLORS_SOFT_RED, msg);
 
     thl->unlock(&thl->mutex);
-
-    free(msg);
 }
 
 /*! @brief free resources for the threaded logger
