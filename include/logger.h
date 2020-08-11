@@ -212,6 +212,9 @@ void info_log(thread_logger *thl, int file_descriptor, char *message);
 int write_file_log(int file_descriptor, char *message);
 
 /*! @brief returns a timestamp of format `Jul 06 10:12:20 PM`
- * @note make sure to free up the memory allocated when done
+ * @warning providing an input buffer whose length isnt at least 76 bytes will result
+ * in undefined behavior
+ * @param date_buffer the buffer to write the timestamp into
+ * @param date_buffer_len the size of the buffer
  */
-char *get_time_string();
+void get_time_string(char *date_buffer, size_t date_buffer_len);

@@ -164,11 +164,12 @@ void logf_func(thread_logger *thl, int file_descriptor, LOG_LEVELS level, char *
 void log_func(thread_logger *thl, int file_descriptor, char *message,
               LOG_LEVELS level, char *file, int line) {
 
-    char *time_str = get_time_string();
-    if (time_str == NULL) {
-        // dont printf log as get_time_str does that
-        return;
-    }
+    char time_str[76];
+    memset(time_str, 0, sizeof(time_str));
+
+    get_time_string(time_str, 76);
+
+    printf("time debug: %s\n", time_str);
 
     char location_info[strlen(file) + sizeof(line) + 4];
     memset(location_info, 0, sizeof(location_info));
@@ -199,8 +200,6 @@ void log_func(thread_logger *thl, int file_descriptor, char *message,
             debug_log(thl, file_descriptor, date_msg);
             break;
     }
-
-    free(time_str);
 }
 
 /*! @brief logs an info styled message - called by log_fn
@@ -337,22 +336,13 @@ void clear_file_logger(file_logger *fhl) {
 }
 
 /*! @brief returns a timestamp of format `Jul 06 10:12:20 PM`
- * @note make sure to free up the memory allocated when done
+ * @warning providing an input buffer whose length isnt at least 76 bytes will result
+ * in undefined behavior
+ * @param date_buffer the buffer to write the timestamp into
+ * @param date_buffer_len the size of the buffer
  */
-char *get_time_string() {
+void get_time_string(char *date_buffer, size_t date_buffer_len) {
 
-    char date[75];
-
-    strftime(date, sizeof date, "%b %d %r", localtime(&(time_t){time(NULL)}));
-
-    char *msg = calloc(1, sizeof(date) + 1);
-    if (msg == NULL) {
-        printf("failed to calloc get_time_string\n");
-        return NULL;
-    }
-
-    strcat(msg, "");
-    strcat(msg, date);
-
-    return msg;
+    strftime(date_buffer, date_buffer_len, "%b %d %r",
+             localtime(&(time_t){time(NULL)}));
 }
