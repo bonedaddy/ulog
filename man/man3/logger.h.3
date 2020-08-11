@@ -30,6 +30,9 @@
 
 .in +1c
 .ti -1c
+.RI "#define \fBLOGGER_VERSION\fP   '0\&.0\&.1'"
+.br
+.ti -1c
 .RI "#define \fB__FILENAME__\fP   (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)"
 .br
 .ti -1c
@@ -170,39 +173,43 @@ Definition in file \fBlogger\&.h\fP\&.
 .SS "#define __FILENAME__   (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)"
 
 .PP
-Definition at line 34 of file logger\&.h\&.
+Definition at line 36 of file logger\&.h\&.
 .SS "#define LOG_DEBUG(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
-Definition at line 41 of file logger\&.h\&.
+Definition at line 43 of file logger\&.h\&.
 .SS "#define LOG_ERROR(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_ERROR\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
-Definition at line 39 of file logger\&.h\&.
+Definition at line 41 of file logger\&.h\&.
 .SS "#define LOG_INFO(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_INFO\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
-Definition at line 35 of file logger\&.h\&.
+Definition at line 37 of file logger\&.h\&.
 .SS "#define LOG_WARN(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_WARN\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
-Definition at line 37 of file logger\&.h\&.
+Definition at line 39 of file logger\&.h\&.
 .SS "#define LOGF_DEBUG(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
-Definition at line 49 of file logger\&.h\&.
+Definition at line 51 of file logger\&.h\&.
 .SS "#define LOGF_ERROR(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_ERROR\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
-Definition at line 47 of file logger\&.h\&.
+Definition at line 49 of file logger\&.h\&.
 .SS "#define LOGF_INFO(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_INFO\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
-Definition at line 43 of file logger\&.h\&.
+Definition at line 45 of file logger\&.h\&.
 .SS "#define LOGF_WARN(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_WARN\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
-Definition at line 45 of file logger\&.h\&.
+Definition at line 47 of file logger\&.h\&.
+.SS "#define LOGGER_VERSION   '0\&.0\&.1'"
+
+.PP
+Definition at line 34 of file logger\&.h\&.
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef struct \fBfile_logger\fP \fBfile_logger\fP"
@@ -210,15 +217,15 @@ Definition at line 45 of file logger\&.h\&.
 .SS "typedef void(* log_fn) (struct \fBthread_logger\fP *thl, int file_descriptor, char *message, \fBLOG_LEVELS\fP level, char *file, int line)"
 
 .PP
-Definition at line 83 of file logger\&.h\&.
+Definition at line 85 of file logger\&.h\&.
 .SS "typedef void(* log_fnf) (struct \fBthread_logger\fP *thl, int file_descriptor, \fBLOG_LEVELS\fP level, char *file, int line, char *message,\&.\&.\&.)"
 
 .PP
-Definition at line 94 of file logger\&.h\&.
+Definition at line 96 of file logger\&.h\&.
 .SS "typedef int(* mutex_fn) (pthread_mutex_t *mx)"
 
 .PP
-Definition at line 74 of file logger\&.h\&.
+Definition at line 76 of file logger\&.h\&.
 .SS "typedef struct \fBthread_logger\fP \fBthread_logger\fP"
 
 .SH "Enumeration Type Documentation"
@@ -241,7 +248,7 @@ indicates the message we are logging is of type error (color red)
 \fB\fILOG_LEVELS_DEBUG \fP\fP
 indicates the message we are logging is of type debug (color soft red) 
 .PP
-Definition at line 59 of file logger\&.h\&.
+Definition at line 61 of file logger\&.h\&.
 .SH "Function Documentation"
 .PP 
 .SS "void clear_file_logger (\fBfile_logger\fP * fhl)"

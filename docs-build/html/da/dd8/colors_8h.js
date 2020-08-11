@@ -8,6 +8,7 @@ var colors_8h =
     [ "ANSI_COLOR_RESET", "da/dd8/colors_8h.html#a92a364c2b863dde1a024a77eac2a5b3b", null ],
     [ "ANSI_COLOR_SOFT_RED", "da/dd8/colors_8h.html#a7840586d4a7dcee86a3e21342dae6f46", null ],
     [ "ANSI_COLOR_YELLOW", "da/dd8/colors_8h.html#a5a123b382640b3aa65dd5db386002fbc", null ],
+    [ "COLORS_VERSION", "da/dd8/colors_8h.html#a1f038d9a631020d14a84b7cc6dde4cd1", null ],
     [ "COLORS", "da/dd8/colors_8h.html#ab983350d6d1201c0ebd709320e7a0d50", [
       [ "COLORS_RED", "da/dd8/colors_8h.html#ab983350d6d1201c0ebd709320e7a0d50ac8f14e92546ee048c1eae63be593e65d", null ],
       [ "COLORS_SOFT_RED", "da/dd8/colors_8h.html#ab983350d6d1201c0ebd709320e7a0d50a5c5b719a36460b04a8baf7112a9bb34d", null ],

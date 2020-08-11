@@ -11,6 +11,7 @@ var logger_8h =
     [ "LOGF_ERROR", "d1/d8c/logger_8h.html#a7bdb2ee39fb10f7ced0e14735158aba4", null ],
     [ "LOGF_INFO", "d1/d8c/logger_8h.html#a29dbd2356dc6f23cdba5fafde6873771", null ],
     [ "LOGF_WARN", "d1/d8c/logger_8h.html#a5d765dc8f0829d66174c23413539db0c", null ],
+    [ "LOGGER_VERSION", "d1/d8c/logger_8h.html#a000e3652f1e9c5614417844941060a84", null ],
     [ "file_logger", "d1/d8c/logger_8h.html#a8d9012aa0b71163e5cc71ddd0c227529", null ],
     [ "log_fn", "d1/d8c/logger_8h.html#a7abc854da0a2035ee0a66c364abdda8c", null ],
     [ "log_fnf", "d1/d8c/logger_8h.html#a43eebf604de40c507564f84cb759088d", null ],
