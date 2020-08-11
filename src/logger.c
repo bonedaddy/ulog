@@ -107,11 +107,8 @@ file_logger *new_file_logger(char *output_file, bool with_debug) {
  */
 int write_file_log(int file_descriptor, char *message) {
 
-    char *msg = calloc(1, strlen(message) + 2); // 2 for \n
-    if (msg == NULL) {
-        printf("failed to calloc msg\n");
-        return -1;
-    }
+    char msg[strlen(message) + 2]; // 2 for \n
+    memset(msg, 0, sizeof(msg));
 
     strcat(msg, message);
     strcat(msg, "\n");
@@ -126,8 +123,6 @@ int write_file_log(int file_descriptor, char *message) {
         // number of bytes written
         response = 0;
     }
-
-    free(msg);
 
     return response;
 }
@@ -169,11 +164,12 @@ void logf_func(thread_logger *thl, int file_descriptor, LOG_LEVELS level, char *
 void log_func(thread_logger *thl, int file_descriptor, char *message,
               LOG_LEVELS level, char *file, int line) {
 
-    char *time_str = get_time_string();
-    if (time_str == NULL) {
-        // dont printf log as get_time_str does that
-        return;
-    }
+    char time_str[76];
+    memset(time_str, 0, sizeof(time_str));
+
+    get_time_string(time_str, 76);
+
+    printf("time debug: %s\n", time_str);
 
     char location_info[strlen(file) + sizeof(line) + 4];
     memset(location_info, 0, sizeof(location_info));
@@ -204,8 +200,6 @@ void log_func(thread_logger *thl, int file_descriptor, char *message,
             debug_log(thl, file_descriptor, date_msg);
             break;
     }
-
-    free(time_str);
 }
 
 /*! @brief logs an info styled message - called by log_fn
@@ -216,12 +210,10 @@ void log_func(thread_logger *thl, int file_descriptor, char *message,
  */
 void info_log(thread_logger *thl, int file_descriptor, char *message) {
 
-    char *msg = calloc(1, strlen(message) + strlen("[info - ") +
-                              2); // 2, 1 for null terminator and 1 for space after ]
-    if (msg == NULL) {
-        printf("failed to calloc info_log msg");
-        return;
-    }
+    // 2, 1 for null terminator and 1 for space after ]
+    size_t msg_size = strlen(message) + strlen("[info - ") + 2;
+    char msg[msg_size];
+    memset(msg, 0, sizeof(msg));
 
     thl->lock(&thl->mutex);
 
@@ -235,8 +227,6 @@ void info_log(thread_logger *thl, int file_descriptor, char *message) {
     print_colored(COLORS_GREEN, msg);
 
     thl->unlock(&thl->mutex);
-
-    free(msg);
 }
 
 /*! @brief logs a warned styled message - called by log_fn
@@ -247,12 +237,10 @@ void info_log(thread_logger *thl, int file_descriptor, char *message) {
  */
 void warn_log(thread_logger *thl, int file_descriptor, char *message) {
 
-    char *msg = calloc(1, strlen(message) + strlen("[warn - ") +
-                              2); // 2, 1 for null terminator and 1 for space after ]
-    if (msg == NULL) {
-        printf("failed to calloc warn_log msg");
-        return;
-    }
+    // 2, 1 for null terminator and 1 for space after ]
+    size_t msg_size = strlen(message) + strlen("[warn - ") + 2;
+    char msg[msg_size];
+    memset(msg, 0, sizeof(msg));
 
     thl->lock(&thl->mutex);
 
@@ -266,8 +254,6 @@ void warn_log(thread_logger *thl, int file_descriptor, char *message) {
     print_colored(COLORS_YELLOW, msg);
 
     thl->unlock(&thl->mutex);
-
-    free(msg);
 }
 
 /*! @brief logs an error styled message - called by log_fn
@@ -278,12 +264,10 @@ void warn_log(thread_logger *thl, int file_descriptor, char *message) {
  */
 void error_log(thread_logger *thl, int file_descriptor, char *message) {
 
-    char *msg = calloc(1, strlen(message) + strlen("[error - ") +
-                              2); // 2, 1 for null terminator and 1 for space after ]
-    if (msg == NULL) {
-        printf("failed to calloc error_log msg");
-        return;
-    }
+    // 2, 1 for null terminator and 1 for space after ]
+    size_t msg_size = strlen(message) + strlen("[error - ") + 2;
+    char msg[msg_size];
+    memset(msg, 0, sizeof(msg));
 
     thl->lock(&thl->mutex);
 
@@ -297,8 +281,6 @@ void error_log(thread_logger *thl, int file_descriptor, char *message) {
     print_colored(COLORS_RED, msg);
 
     thl->unlock(&thl->mutex);
-
-    free(msg);
 }
 
 /*! @brief logs a debug styled message - called by log_fn
@@ -313,12 +295,10 @@ void debug_log(thread_logger *thl, int file_descriptor, char *message) {
         return;
     }
 
-    char *msg = calloc(1, strlen(message) + strlen("[debug - ") +
-                              2); // 2, 1 for null terminator and 1 for space after ]
-    if (msg == NULL) {
-        printf("failed to calloc debug_log msg");
-        return;
-    }
+    // 2, 1 for null terminator and 1 for space after ]
+    size_t msg_size = strlen(message) + strlen("[debug - ") + 2;
+    char msg[msg_size];
+    memset(msg, 0, sizeof(msg));
 
     thl->lock(&thl->mutex);
 
@@ -332,8 +312,6 @@ void debug_log(thread_logger *thl, int file_descriptor, char *message) {
     print_colored(COLORS_SOFT_RED, msg);
 
     thl->unlock(&thl->mutex);
-
-    free(msg);
 }
 
 /*! @brief free resources for the threaded logger
@@ -358,22 +336,13 @@ void clear_file_logger(file_logger *fhl) {
 }
 
 /*! @brief returns a timestamp of format `Jul 06 10:12:20 PM`
- * @note make sure to free up the memory allocated when done
+ * @warning providing an input buffer whose length isnt at least 76 bytes will result
+ * in undefined behavior
+ * @param date_buffer the buffer to write the timestamp into
+ * @param date_buffer_len the size of the buffer
  */
-char *get_time_string() {
+void get_time_string(char *date_buffer, size_t date_buffer_len) {
 
-    char date[75];
-
-    strftime(date, sizeof date, "%b %d %r", localtime(&(time_t){time(NULL)}));
-
-    char *msg = calloc(1, sizeof(date) + 1);
-    if (msg == NULL) {
-        printf("failed to calloc get_time_string\n");
-        return NULL;
-    }
-
-    strcat(msg, "");
-    strcat(msg, date);
-
-    return msg;
+    strftime(date_buffer, date_buffer_len, "%b %d %r",
+             localtime(&(time_t){time(NULL)}));
 }
