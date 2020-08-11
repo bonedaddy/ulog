@@ -12,15 +12,51 @@ If not using debug logging then any DEBUG level log calls are silently skipped. 
 
 I wanted a simple logging library that didnt leak memory, was well tested, and capable of color coded output. All logging libraries I found were complex code bases, leaked memory, and relied on global variables. Because of that, and as a way to better learn C development `ulog` was born.
 
+Interested in reading more about how `ulog` was born? [I published a blog post detailing the creation](https://bonedaddy.io/blog/misc/ulog_lightweight_threadsafe/).
+
+# versioning
+
+The library follows semver as the versioning scheme. Additinoally the header files have `LOGGER_VERSION` and `COLORS_VERSION` macros which include the current release number. This is to help situations in which you may be using the library my copy and pasting the code into some other repository.
+
 # installation
 
-To install you can simply copy and paste the `logger.h`, `colors.h`, `logger.c`, and `colors.c` files into whatever project you are working on.
+To install you can simply copy and paste the `logger.h`, `colors.h`, `logger.c`, and `colors.c` files into whatever project you are working on. You will need to make sure that you have pthreads available to link with as the logger library has a pthreads dependency.
+
+# testing
+
+Before testing you'll need to compile the code, for which you have two options
+
+Release mode
+
+```shell
+$> make
+```
+
+Debug mode
+
+```shell
+$> make build-debug
+```
+
+Running either of the following two commands will build a test executable `logger-test` within the `build` folder. You can either invoke this manually or use `ctest`.
+
+Regular unit testing:
+
+```shell
+$> ctest
+```
+
+Valgrind dynamic analysis and unit testing:
+
+```shell
+$> ctest -T memcheck
+```
 
 # usage
 
 The following code samples produce the output shown in the screenshot at the start of the readme.
 
-## No File Logging
+## no file logging
 
 ```C
 #include <stdbool.H>
@@ -44,7 +80,7 @@ LOGF_DEBUG(thl, 0, "this is a %s style debug log", "printf");
 clear_thread_logger(thl);
 ```
 
-## File Logging
+## file logging
 
 ```C
 #include <stdbool.h>
