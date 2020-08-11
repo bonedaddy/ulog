@@ -132,25 +132,34 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a000e3652f1e9c5614417844941060a84"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a000e3652f1e9c5614417844941060a84">LOGGER_VERSION</a>&#160;&#160;&#160;'0.0.1'</td></tr>
+<tr class="memitem:a000e3652f1e9c5614417844941060a84"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a000e3652f1e9c5614417844941060a84">LOGGER_VERSION</a>&#160;&#160;&#160;'0.0.2-rc1'</td></tr>
 <tr class="separator:a000e3652f1e9c5614417844941060a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fccb4fc71e44089a1b1a77fc76c0b68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>&#160;&#160;&#160;(strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)</td></tr>
+<tr class="memdesc:a5fccb4fc71e44089a1b1a77fc76c0b68"><td class="mdescLeft">&#160;</td><td class="mdescRight">strips leading path from <b>FILE</b>  <a href="../../d1/d8c/logger_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">More...</a><br /></td></tr>
 <tr class="separator:a5fccb4fc71e44089a1b1a77fc76c0b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a663c757fa1a7b61074f6da01acabbd12"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a663c757fa1a7b61074f6da01acabbd12">LOG_INFO</a>(thl,  fd,  msg)&#160;&#160;&#160;thl-&gt;log(thl, fd, msg, <a class="el" href="../../d1/d8c/logger_8h.html#a6cfcf0d1e54151523d73f747ea51ba99ace50ff5547ca932c712f3e62fc70d868">LOG_LEVELS_INFO</a>, <a class="el" href="../../d1/d8c/logger_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__);</td></tr>
+<tr class="memdesc:a663c757fa1a7b61074f6da01acabbd12"><td class="mdescLeft">&#160;</td><td class="mdescRight">used to emit a standard INFO log  <a href="../../d1/d8c/logger_8h.html#a663c757fa1a7b61074f6da01acabbd12">More...</a><br /></td></tr>
 <tr class="separator:a663c757fa1a7b61074f6da01acabbd12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10ef0ebfb4079b7270f555fae9a10e12"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a10ef0ebfb4079b7270f555fae9a10e12">LOG_WARN</a>(thl,  fd,  msg)&#160;&#160;&#160;thl-&gt;log(thl, fd, msg, <a class="el" href="../../d1/d8c/logger_8h.html#a6cfcf0d1e54151523d73f747ea51ba99a511ee5c792e61122a792f213d025dd06">LOG_LEVELS_WARN</a>, <a class="el" href="../../d1/d8c/logger_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__);</td></tr>
+<tr class="memdesc:a10ef0ebfb4079b7270f555fae9a10e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">used to emit a standard WARN log  <a href="../../d1/d8c/logger_8h.html#a10ef0ebfb4079b7270f555fae9a10e12">More...</a><br /></td></tr>
 <tr class="separator:a10ef0ebfb4079b7270f555fae9a10e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d912cd3694fbcbdfb204b29f2345422"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a9d912cd3694fbcbdfb204b29f2345422">LOG_ERROR</a>(thl,  fd,  msg)&#160;&#160;&#160;thl-&gt;log(thl, fd, msg, <a class="el" href="../../d1/d8c/logger_8h.html#a6cfcf0d1e54151523d73f747ea51ba99a24093121542f3c608c0b7094d97e49cb">LOG_LEVELS_ERROR</a>, <a class="el" href="../../d1/d8c/logger_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__);</td></tr>
+<tr class="memdesc:a9d912cd3694fbcbdfb204b29f2345422"><td class="mdescLeft">&#160;</td><td class="mdescRight">used to emit a standard ERROR log  <a href="../../d1/d8c/logger_8h.html#a9d912cd3694fbcbdfb204b29f2345422">More...</a><br /></td></tr>
 <tr class="separator:a9d912cd3694fbcbdfb204b29f2345422"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1946d2d37922323bc8800c6cfff91af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#ad1946d2d37922323bc8800c6cfff91af">LOG_DEBUG</a>(thl,  fd,  msg)&#160;&#160;&#160;thl-&gt;log(thl, fd, msg, <a class="el" href="../../d1/d8c/logger_8h.html#a6cfcf0d1e54151523d73f747ea51ba99aaf1acdeaa38597b53624a1692c7f894f">LOG_LEVELS_DEBUG</a>, <a class="el" href="../../d1/d8c/logger_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__);</td></tr>
+<tr class="memdesc:ad1946d2d37922323bc8800c6cfff91af"><td class="mdescLeft">&#160;</td><td class="mdescRight">used to emit a standard DEBUG log  <a href="../../d1/d8c/logger_8h.html#ad1946d2d37922323bc8800c6cfff91af">More...</a><br /></td></tr>
 <tr class="separator:ad1946d2d37922323bc8800c6cfff91af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29dbd2356dc6f23cdba5fafde6873771"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a29dbd2356dc6f23cdba5fafde6873771">LOGF_INFO</a>(thl,  fd,  msg, ...)&#160;&#160;&#160;thl-&gt;logf(thl, fd, <a class="el" href="../../d1/d8c/logger_8h.html#a6cfcf0d1e54151523d73f747ea51ba99ace50ff5547ca932c712f3e62fc70d868">LOG_LEVELS_INFO</a>, <a class="el" href="../../d1/d8c/logger_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, msg, __VA_ARGS__);</td></tr>
+<tr class="memdesc:a29dbd2356dc6f23cdba5fafde6873771"><td class="mdescLeft">&#160;</td><td class="mdescRight">used to emit a printf INFO log  <a href="../../d1/d8c/logger_8h.html#a29dbd2356dc6f23cdba5fafde6873771">More...</a><br /></td></tr>
 <tr class="separator:a29dbd2356dc6f23cdba5fafde6873771"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d765dc8f0829d66174c23413539db0c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a5d765dc8f0829d66174c23413539db0c">LOGF_WARN</a>(thl,  fd,  msg, ...)&#160;&#160;&#160;thl-&gt;logf(thl, fd, <a class="el" href="../../d1/d8c/logger_8h.html#a6cfcf0d1e54151523d73f747ea51ba99a511ee5c792e61122a792f213d025dd06">LOG_LEVELS_WARN</a>, <a class="el" href="../../d1/d8c/logger_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, msg, __VA_ARGS__);</td></tr>
+<tr class="memdesc:a5d765dc8f0829d66174c23413539db0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">used to emit a printf WARN log  <a href="../../d1/d8c/logger_8h.html#a5d765dc8f0829d66174c23413539db0c">More...</a><br /></td></tr>
 <tr class="separator:a5d765dc8f0829d66174c23413539db0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bdb2ee39fb10f7ced0e14735158aba4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a7bdb2ee39fb10f7ced0e14735158aba4">LOGF_ERROR</a>(thl,  fd,  msg, ...)&#160;&#160;&#160;thl-&gt;logf(thl, fd, <a class="el" href="../../d1/d8c/logger_8h.html#a6cfcf0d1e54151523d73f747ea51ba99a24093121542f3c608c0b7094d97e49cb">LOG_LEVELS_ERROR</a>, <a class="el" href="../../d1/d8c/logger_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, msg, __VA_ARGS__);</td></tr>
+<tr class="memdesc:a7bdb2ee39fb10f7ced0e14735158aba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">used to emit a printf ERROR log  <a href="../../d1/d8c/logger_8h.html#a7bdb2ee39fb10f7ced0e14735158aba4">More...</a><br /></td></tr>
 <tr class="separator:a7bdb2ee39fb10f7ced0e14735158aba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55930c941161b084e39cd6436de028f0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a55930c941161b084e39cd6436de028f0">LOGF_DEBUG</a>(thl,  fd,  msg, ...)&#160;&#160;&#160;thl-&gt;logf(thl, fd, <a class="el" href="../../d1/d8c/logger_8h.html#a6cfcf0d1e54151523d73f747ea51ba99aaf1acdeaa38597b53624a1692c7f894f">LOG_LEVELS_DEBUG</a>, <a class="el" href="../../d1/d8c/logger_8h.html#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>, __LINE__, msg, __VA_ARGS__);</td></tr>
+<tr class="memdesc:a55930c941161b084e39cd6436de028f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">used to emit a printf DEBUG log  <a href="../../d1/d8c/logger_8h.html#a55930c941161b084e39cd6436de028f0">More...</a><br /></td></tr>
 <tr class="separator:a55930c941161b084e39cd6436de028f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -210,9 +219,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6362ea8a304cd179fbd42e2971ed71f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#a6362ea8a304cd179fbd42e2971ed71f3">write_file_log</a> (int file_descriptor, char *message)</td></tr>
 <tr class="memdesc:a6362ea8a304cd179fbd42e2971ed71f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">used to write a log message to file although this really means a file descriptor  <a href="../../d1/d8c/logger_8h.html#a6362ea8a304cd179fbd42e2971ed71f3">More...</a><br /></td></tr>
 <tr class="separator:a6362ea8a304cd179fbd42e2971ed71f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0609b044ca46a9e3d6e1ac8a6149422"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#aa0609b044ca46a9e3d6e1ac8a6149422">get_time_string</a> ()</td></tr>
-<tr class="memdesc:aa0609b044ca46a9e3d6e1ac8a6149422"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a timestamp of format <code>Jul 06 10:12:20 PM</code>  <a href="../../d1/d8c/logger_8h.html#aa0609b044ca46a9e3d6e1ac8a6149422">More...</a><br /></td></tr>
-<tr class="separator:aa0609b044ca46a9e3d6e1ac8a6149422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af72d1c9f222fd1f9c9c03d2853805ccd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d8c/logger_8h.html#af72d1c9f222fd1f9c9c03d2853805ccd">get_time_string</a> (char *date_buffer, size_t date_buffer_len)</td></tr>
+<tr class="memdesc:af72d1c9f222fd1f9c9c03d2853805ccd"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a timestamp of format <code>Jul 06 10:12:20 PM</code>  <a href="../../d1/d8c/logger_8h.html#af72d1c9f222fd1f9c9c03d2853805ccd">More...</a><br /></td></tr>
+<tr class="separator:af72d1c9f222fd1f9c9c03d2853805ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>a thread safe logger with optional printf style logging </p>
@@ -243,7 +252,9 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00036">36</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p>strips leading path from <b>FILE</b> </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00039">39</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -279,7 +290,18 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00043">43</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p>used to emit a standard DEBUG log </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thl</td><td>an instance of <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a>, passing anything other than an initialized <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a> will result in undefined benhavior </td></tr>
+    <tr><td class="paramname">fd</td><td>the file descriptor to log to, set to 0 if you just want stdout logging </td></tr>
+    <tr><td class="paramname">msg</td><td>the actual message to log </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>if logger is created without debug enabled, this is a noop </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00079">79</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -315,7 +337,17 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00041">41</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p>used to emit a standard ERROR log </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thl</td><td>an instance of <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a>, passing anything other than an initialized <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a> will result in undefined benhavior </td></tr>
+    <tr><td class="paramname">fd</td><td>the file descriptor to log to, set to 0 if you just want stdout logging </td></tr>
+    <tr><td class="paramname">msg</td><td>the actual message to log </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00068">68</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -351,7 +383,17 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00037">37</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p>used to emit a standard INFO log </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thl</td><td>an instance of <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a>, passing anything other than an initialized <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a> will result in undefined benhavior </td></tr>
+    <tr><td class="paramname">fd</td><td>the file descriptor to log to, set to 0 if you just want stdout logging </td></tr>
+    <tr><td class="paramname">msg</td><td>the actual message to log </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00048">48</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -387,7 +429,17 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00039">39</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p>used to emit a standard WARN log </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thl</td><td>an instance of <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a>, passing anything other than an initialized <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a> will result in undefined benhavior </td></tr>
+    <tr><td class="paramname">fd</td><td>the file descriptor to log to, set to 0 if you just want stdout logging </td></tr>
+    <tr><td class="paramname">msg</td><td>the actual message to log </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00058">58</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -429,7 +481,19 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00051">51</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p>used to emit a printf DEBUG log </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thl</td><td>an instance of <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a>, passing anything other than an initialized <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a> will result in undefined benhavior </td></tr>
+    <tr><td class="paramname">fd</td><td>the file descriptor to log to, set to 0 if you just want stdout logging </td></tr>
+    <tr><td class="paramname">msg</td><td>the printf styled message to format </td></tr>
+    <tr><td class="paramname">...</td><td>the arguments to use for formatting </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>if logger is created without debug enabled, this is a noop </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00127">127</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -471,7 +535,19 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00049">49</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p>used to emit a printf ERROR log </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thl</td><td>an instance of <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a>, passing anything other than an initialized <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a> will result in undefined benhavior </td></tr>
+    <tr><td class="paramname">fd</td><td>the file descriptor to log to, set to 0 if you just want stdout logging </td></tr>
+    <tr><td class="paramname">msg</td><td>the actual message to log </td></tr>
+    <tr><td class="paramname">msg</td><td>the printf styled message to format </td></tr>
+    <tr><td class="paramname">...</td><td>the arguments to use for formatting </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00115">115</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -513,7 +589,19 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00045">45</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p>used to emit a printf INFO log </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thl</td><td>an instance of <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a>, passing anything other than an initialized <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a> will result in undefined benhavior </td></tr>
+    <tr><td class="paramname">fd</td><td>the file descriptor to log to, set to 0 if you just want stdout logging </td></tr>
+    <tr><td class="paramname">msg</td><td>the actual message to log </td></tr>
+    <tr><td class="paramname">msg</td><td>the printf styled message to format </td></tr>
+    <tr><td class="paramname">...</td><td>the arguments to use for formatting </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00091">91</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -555,7 +643,19 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00047">47</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p>used to emit a printf WARN log </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thl</td><td>an instance of <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a>, passing anything other than an initialized <a class="el" href="../../da/da5/structthread__logger.html">thread_logger</a> will result in undefined benhavior </td></tr>
+    <tr><td class="paramname">fd</td><td>the file descriptor to log to, set to 0 if you just want stdout logging </td></tr>
+    <tr><td class="paramname">msg</td><td>the actual message to log </td></tr>
+    <tr><td class="paramname">msg</td><td>the printf styled message to format </td></tr>
+    <tr><td class="paramname">...</td><td>the arguments to use for formatting </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00103">103</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -566,7 +666,7 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOGGER_VERSION&#160;&#160;&#160;'0.0.1'</td>
+          <td class="memname">#define LOGGER_VERSION&#160;&#160;&#160;'0.0.2-rc1'</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -602,7 +702,7 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00085">85</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00161">161</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -618,7 +718,7 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00096">96</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00172">172</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -634,7 +734,7 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00076">76</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00152">152</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -675,7 +775,7 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00061">61</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d8c/logger_8h_source.html#l00137">137</a> of file <a class="el" href="../../d1/d8c/logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -704,7 +804,7 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00353">353</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00331">331</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -741,7 +841,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00342">342</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00320">320</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -796,7 +896,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00310">310</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00292">292</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -865,7 +965,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00279">279</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00265">265</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -892,30 +992,48 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="aa0609b044ca46a9e3d6e1ac8a6149422"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0609b044ca46a9e3d6e1ac8a6149422">&#9670;&nbsp;</a></span>get_time_string()</h2>
+<a id="af72d1c9f222fd1f9c9c03d2853805ccd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af72d1c9f222fd1f9c9c03d2853805ccd">&#9670;&nbsp;</a></span>get_time_string()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* get_time_string </td>
+          <td class="memname">void get_time_string </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>date_buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>date_buffer_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>returns a timestamp of format <code>Jul 06 10:12:20 PM</code> </p>
-<dl class="section note"><dt>Note</dt><dd>make sure to free up the memory allocated when done </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>providing an input buffer whose length isnt at least 76 bytes will result in undefined behavior </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">date_buffer</td><td>the buffer to write the timestamp into </td></tr>
+    <tr><td class="paramname">date_buffer_len</td><td>the size of the buffer </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00363">363</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00344">344</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d1/d8c/logger_8h_aa0609b044ca46a9e3d6e1ac8a6149422_icgraph.png" border="0" usemap="#d1/d8c/logger_8h_aa0609b044ca46a9e3d6e1ac8a6149422_icgraph" alt=""/></div>
-<map name="d1/d8c/logger_8h_aa0609b044ca46a9e3d6e1ac8a6149422_icgraph" id="d1/d8c/logger_8h_aa0609b044ca46a9e3d6e1ac8a6149422_icgraph">
+<div class="center"><img src="../../d1/d8c/logger_8h_af72d1c9f222fd1f9c9c03d2853805ccd_icgraph.png" border="0" usemap="#d1/d8c/logger_8h_af72d1c9f222fd1f9c9c03d2853805ccd_icgraph" alt=""/></div>
+<map name="d1/d8c/logger_8h_af72d1c9f222fd1f9c9c03d2853805ccd_icgraph" id="d1/d8c/logger_8h_af72d1c9f222fd1f9c9c03d2853805ccd_icgraph">
 <area shape="rect" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="628,31,752,57"/>
 <area shape="rect" href="../../d1/d8c/logger_8h.html#a070efe5c00ac2e245b407b87a8314091" title="main function you should call, which will delegate to the appopriate *_log function" alt="" coords="503,31,580,57"/>
 <area shape="rect" href="../../d1/d8c/logger_8h.html#af467d23bd5262499508f556c4f530160" title="like log_func but for formatted logs" alt="" coords="372,5,455,32"/>
@@ -968,7 +1086,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00217">217</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00211">211</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1056,7 +1174,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00169">169</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00164">164</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1065,7 +1183,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="main function you should call, which will delegate to the appopriate *_log function" alt="" coords="5,107,83,133"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#adbd079d224c0a17760bd34be2b94d4d4" title="logs a debug styled message &#45; called by log_fn" alt="" coords="148,56,237,83"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a86974eb20c3c2a9b8528cca2bfd1526b" title="logs an error styled message &#45; called by log_fn" alt="" coords="153,107,233,133"/>
-<area shape="rect" href="../../d1/d22/logger_8c.html#aa0609b044ca46a9e3d6e1ac8a6149422" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="131,208,255,235"/>
+<area shape="rect" href="../../d1/d22/logger_8c.html#af72d1c9f222fd1f9c9c03d2853805ccd" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="131,208,255,235"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#acb4bc62c4f5124145fdd7813a8eff213" title="logs an info styled message &#45; called by log_fn" alt="" coords="155,157,230,184"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a1979109bb7f9b3fccd5d35ab62af76b0" title="logs a warned styled message &#45; called by log_fn" alt="" coords="152,5,233,32"/>
 <area shape="rect" href="../../d3/d13/colors_8c.html#a9b86c057290aefcc15b20231f9cabe9e" title="prints message to stdout with the given color" alt="" coords="304,56,411,83"/>
@@ -1155,7 +1273,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00143">143</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00138">138</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1165,7 +1283,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a070efe5c00ac2e245b407b87a8314091" title="main function you should call, which will delegate to the appopriate *_log function" alt="" coords="136,107,213,133"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#adbd079d224c0a17760bd34be2b94d4d4" title="logs a debug styled message &#45; called by log_fn" alt="" coords="279,56,368,83"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a86974eb20c3c2a9b8528cca2bfd1526b" title="logs an error styled message &#45; called by log_fn" alt="" coords="283,107,363,133"/>
-<area shape="rect" href="../../d1/d22/logger_8c.html#aa0609b044ca46a9e3d6e1ac8a6149422" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="261,208,385,235"/>
+<area shape="rect" href="../../d1/d22/logger_8c.html#af72d1c9f222fd1f9c9c03d2853805ccd" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="261,208,385,235"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#acb4bc62c4f5124145fdd7813a8eff213" title="logs an info styled message &#45; called by log_fn" alt="" coords="286,157,361,184"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a1979109bb7f9b3fccd5d35ab62af76b0" title="logs a warned styled message &#45; called by log_fn" alt="" coords="283,5,364,32"/>
 <area shape="rect" href="../../d3/d13/colors_8c.html#a9b86c057290aefcc15b20231f9cabe9e" title="prints message to stdout with the given color" alt="" coords="435,56,541,83"/>
@@ -1232,7 +1350,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="../../d1/d22/logger_8c.html#af467d23bd5262499508f556c4f530160" title="like log_func but for formatted logs" alt="" coords="372,132,455,159"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#adbd079d224c0a17760bd34be2b94d4d4" title="logs a debug styled message &#45; called by log_fn" alt="" coords="645,56,735,83"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a86974eb20c3c2a9b8528cca2bfd1526b" title="logs an error styled message &#45; called by log_fn" alt="" coords="650,107,730,133"/>
-<area shape="rect" href="../../d1/d22/logger_8c.html#aa0609b044ca46a9e3d6e1ac8a6149422" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="628,208,752,235"/>
+<area shape="rect" href="../../d1/d22/logger_8c.html#af72d1c9f222fd1f9c9c03d2853805ccd" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="628,208,752,235"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#acb4bc62c4f5124145fdd7813a8eff213" title="logs an info styled message &#45; called by log_fn" alt="" coords="653,157,727,184"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a1979109bb7f9b3fccd5d35ab62af76b0" title="logs a warned styled message &#45; called by log_fn" alt="" coords="649,5,731,32"/>
 <area shape="rect" href="../../d3/d13/colors_8c.html#a9b86c057290aefcc15b20231f9cabe9e" title="prints message to stdout with the given color" alt="" coords="801,56,908,83"/>
@@ -1278,7 +1396,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="../../d1/d22/logger_8c.html#af467d23bd5262499508f556c4f530160" title="like log_func but for formatted logs" alt="" coords="200,132,283,159"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#adbd079d224c0a17760bd34be2b94d4d4" title="logs a debug styled message &#45; called by log_fn" alt="" coords="473,56,563,83"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a86974eb20c3c2a9b8528cca2bfd1526b" title="logs an error styled message &#45; called by log_fn" alt="" coords="478,107,558,133"/>
-<area shape="rect" href="../../d1/d22/logger_8c.html#aa0609b044ca46a9e3d6e1ac8a6149422" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="456,208,580,235"/>
+<area shape="rect" href="../../d1/d22/logger_8c.html#af72d1c9f222fd1f9c9c03d2853805ccd" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="456,208,580,235"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#acb4bc62c4f5124145fdd7813a8eff213" title="logs an info styled message &#45; called by log_fn" alt="" coords="481,157,555,184"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a1979109bb7f9b3fccd5d35ab62af76b0" title="logs a warned styled message &#45; called by log_fn" alt="" coords="477,5,559,32"/>
 <area shape="rect" href="../../d3/d13/colors_8c.html#a9b86c057290aefcc15b20231f9cabe9e" title="prints message to stdout with the given color" alt="" coords="629,56,736,83"/>
@@ -1340,7 +1458,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00248">248</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00238">238</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

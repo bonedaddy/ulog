@@ -1,4 +1,4 @@
-.TH "/media/solidity/DATA/Code/bonedaddy/ulog/src/logger.c" 3 "Mon Aug 10 2020" "ulogger" \" -*- nroff -*-
+.TH "/media/solidity/DATA/Code/bonedaddy/ulog/src/logger.c" 3 "Tue Aug 11 2020" "ulogger" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -76,7 +76,7 @@
 .br
 .RI "free resources for the file ogger "
 .ti -1c
-.RI "char * \fBget_time_string\fP ()"
+.RI "void \fBget_time_string\fP (char *date_buffer, size_t date_buffer_len)"
 .br
 .RI "returns a timestamp of format \fCJul 06 10:12:20 PM\fP "
 .in -1c
@@ -124,7 +124,7 @@ free resources for the file ogger
 .PP
 
 .PP
-Definition at line 353 of file logger\&.c\&.
+Definition at line 331 of file logger\&.c\&.
 .SS "void clear_thread_logger (\fBthread_logger\fP * thl)"
 
 .PP
@@ -137,7 +137,7 @@ free resources for the threaded logger
 .PP
 
 .PP
-Definition at line 342 of file logger\&.c\&.
+Definition at line 320 of file logger\&.c\&.
 .SS "void debug_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -154,7 +154,7 @@ logs a debug styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 310 of file logger\&.c\&.
+Definition at line 292 of file logger\&.c\&.
 .SS "void error_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -171,20 +171,27 @@ logs an error styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 279 of file logger\&.c\&.
-.SS "char* get_time_string ()"
+Definition at line 265 of file logger\&.c\&.
+.SS "void get_time_string (char * date_buffer, size_t date_buffer_len)"
 
 .PP
 returns a timestamp of format \fCJul 06 10:12:20 PM\fP 
 .PP
-\fBNote\fP
+\fBWarning\fP
 .RS 4
-make sure to free up the memory allocated when done 
+providing an input buffer whose length isnt at least 76 bytes will result in undefined behavior 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIdate_buffer\fP the buffer to write the timestamp into 
+.br
+\fIdate_buffer_len\fP the size of the buffer 
 .RE
 .PP
 
 .PP
-Definition at line 363 of file logger\&.c\&.
+Definition at line 344 of file logger\&.c\&.
 .SS "void info_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -201,7 +208,7 @@ logs an info styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 217 of file logger\&.c\&.
+Definition at line 211 of file logger\&.c\&.
 .SS "void log_func (\fBthread_logger\fP * thl, int file_descriptor, char * message, \fBLOG_LEVELS\fP level, char * file, int line)"
 
 .PP
@@ -220,7 +227,7 @@ main function you should call, which will delegate to the appopriate *_log funct
 .PP
 
 .PP
-Definition at line 169 of file logger\&.c\&.
+Definition at line 164 of file logger\&.c\&.
 .SS "void logf_func (\fBthread_logger\fP * thl, int file_descriptor, \fBLOG_LEVELS\fP level, char * file, int line, char * message,  \&.\&.\&.)"
 
 .PP
@@ -241,7 +248,7 @@ like log_func but for formatted logs
 .PP
 
 .PP
-Definition at line 143 of file logger\&.c\&.
+Definition at line 138 of file logger\&.c\&.
 .SS "\fBfile_logger\fP* new_file_logger (char * output_file, bool with_debug)"
 
 .PP
@@ -284,7 +291,7 @@ logs a warned styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 248 of file logger\&.c\&.
+Definition at line 238 of file logger\&.c\&.
 .SS "int write_file_log (int file_descriptor, char * message)"
 
 .PP

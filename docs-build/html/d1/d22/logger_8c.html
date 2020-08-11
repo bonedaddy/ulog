@@ -159,9 +159,9 @@ Functions</h2></td></tr>
 <tr class="memitem:acb35852b4fbddea293c8aa641f5e5524"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d22/logger_8c.html#acb35852b4fbddea293c8aa641f5e5524">clear_file_logger</a> (<a class="el" href="../../d5/d99/structfile__logger.html">file_logger</a> *fhl)</td></tr>
 <tr class="memdesc:acb35852b4fbddea293c8aa641f5e5524"><td class="mdescLeft">&#160;</td><td class="mdescRight">free resources for the file ogger  <a href="../../d1/d22/logger_8c.html#acb35852b4fbddea293c8aa641f5e5524">More...</a><br /></td></tr>
 <tr class="separator:acb35852b4fbddea293c8aa641f5e5524"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0609b044ca46a9e3d6e1ac8a6149422"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d22/logger_8c.html#aa0609b044ca46a9e3d6e1ac8a6149422">get_time_string</a> ()</td></tr>
-<tr class="memdesc:aa0609b044ca46a9e3d6e1ac8a6149422"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a timestamp of format <code>Jul 06 10:12:20 PM</code>  <a href="../../d1/d22/logger_8c.html#aa0609b044ca46a9e3d6e1ac8a6149422">More...</a><br /></td></tr>
-<tr class="separator:aa0609b044ca46a9e3d6e1ac8a6149422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af72d1c9f222fd1f9c9c03d2853805ccd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d22/logger_8c.html#af72d1c9f222fd1f9c9c03d2853805ccd">get_time_string</a> (char *date_buffer, size_t date_buffer_len)</td></tr>
+<tr class="memdesc:af72d1c9f222fd1f9c9c03d2853805ccd"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a timestamp of format <code>Jul 06 10:12:20 PM</code>  <a href="../../d1/d22/logger_8c.html#af72d1c9f222fd1f9c9c03d2853805ccd">More...</a><br /></td></tr>
+<tr class="separator:af72d1c9f222fd1f9c9c03d2853805ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>a thread safe logger with optional printf style logging </p>
@@ -204,7 +204,7 @@ warn, and info appear to not respect format, while debug and error do </dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00353">353</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00331">331</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -241,7 +241,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00342">342</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00320">320</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -296,7 +296,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00310">310</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00292">292</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -365,7 +365,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00279">279</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00265">265</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -392,30 +392,48 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="aa0609b044ca46a9e3d6e1ac8a6149422"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0609b044ca46a9e3d6e1ac8a6149422">&#9670;&nbsp;</a></span>get_time_string()</h2>
+<a id="af72d1c9f222fd1f9c9c03d2853805ccd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af72d1c9f222fd1f9c9c03d2853805ccd">&#9670;&nbsp;</a></span>get_time_string()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* get_time_string </td>
+          <td class="memname">void get_time_string </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>date_buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>date_buffer_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>returns a timestamp of format <code>Jul 06 10:12:20 PM</code> </p>
-<dl class="section note"><dt>Note</dt><dd>make sure to free up the memory allocated when done </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>providing an input buffer whose length isnt at least 76 bytes will result in undefined behavior </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">date_buffer</td><td>the buffer to write the timestamp into </td></tr>
+    <tr><td class="paramname">date_buffer_len</td><td>the size of the buffer </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00363">363</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00344">344</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d1/d22/logger_8c_aa0609b044ca46a9e3d6e1ac8a6149422_icgraph.png" border="0" usemap="#d1/d22/logger_8c_aa0609b044ca46a9e3d6e1ac8a6149422_icgraph" alt=""/></div>
-<map name="d1/d22/logger_8c_aa0609b044ca46a9e3d6e1ac8a6149422_icgraph" id="d1/d22/logger_8c_aa0609b044ca46a9e3d6e1ac8a6149422_icgraph">
+<div class="center"><img src="../../d1/d22/logger_8c_af72d1c9f222fd1f9c9c03d2853805ccd_icgraph.png" border="0" usemap="#d1/d22/logger_8c_af72d1c9f222fd1f9c9c03d2853805ccd_icgraph" alt=""/></div>
+<map name="d1/d22/logger_8c_af72d1c9f222fd1f9c9c03d2853805ccd_icgraph" id="d1/d22/logger_8c_af72d1c9f222fd1f9c9c03d2853805ccd_icgraph">
 <area shape="rect" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="628,31,752,57"/>
 <area shape="rect" href="../../d1/d8c/logger_8h.html#a070efe5c00ac2e245b407b87a8314091" title="main function you should call, which will delegate to the appopriate *_log function" alt="" coords="503,31,580,57"/>
 <area shape="rect" href="../../d1/d8c/logger_8h.html#af467d23bd5262499508f556c4f530160" title="like log_func but for formatted logs" alt="" coords="372,5,455,32"/>
@@ -468,7 +486,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00217">217</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00211">211</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -556,7 +574,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00169">169</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00164">164</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -565,7 +583,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="main function you should call, which will delegate to the appopriate *_log function" alt="" coords="5,107,83,133"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#adbd079d224c0a17760bd34be2b94d4d4" title="logs a debug styled message &#45; called by log_fn" alt="" coords="148,56,237,83"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a86974eb20c3c2a9b8528cca2bfd1526b" title="logs an error styled message &#45; called by log_fn" alt="" coords="153,107,233,133"/>
-<area shape="rect" href="../../d1/d22/logger_8c.html#aa0609b044ca46a9e3d6e1ac8a6149422" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="131,208,255,235"/>
+<area shape="rect" href="../../d1/d22/logger_8c.html#af72d1c9f222fd1f9c9c03d2853805ccd" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="131,208,255,235"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#acb4bc62c4f5124145fdd7813a8eff213" title="logs an info styled message &#45; called by log_fn" alt="" coords="155,157,230,184"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a1979109bb7f9b3fccd5d35ab62af76b0" title="logs a warned styled message &#45; called by log_fn" alt="" coords="152,5,233,32"/>
 <area shape="rect" href="../../d3/d13/colors_8c.html#a9b86c057290aefcc15b20231f9cabe9e" title="prints message to stdout with the given color" alt="" coords="304,56,411,83"/>
@@ -655,7 +673,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00143">143</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00138">138</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -665,7 +683,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a070efe5c00ac2e245b407b87a8314091" title="main function you should call, which will delegate to the appopriate *_log function" alt="" coords="136,107,213,133"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#adbd079d224c0a17760bd34be2b94d4d4" title="logs a debug styled message &#45; called by log_fn" alt="" coords="279,56,368,83"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a86974eb20c3c2a9b8528cca2bfd1526b" title="logs an error styled message &#45; called by log_fn" alt="" coords="283,107,363,133"/>
-<area shape="rect" href="../../d1/d22/logger_8c.html#aa0609b044ca46a9e3d6e1ac8a6149422" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="261,208,385,235"/>
+<area shape="rect" href="../../d1/d22/logger_8c.html#af72d1c9f222fd1f9c9c03d2853805ccd" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="261,208,385,235"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#acb4bc62c4f5124145fdd7813a8eff213" title="logs an info styled message &#45; called by log_fn" alt="" coords="286,157,361,184"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a1979109bb7f9b3fccd5d35ab62af76b0" title="logs a warned styled message &#45; called by log_fn" alt="" coords="283,5,364,32"/>
 <area shape="rect" href="../../d3/d13/colors_8c.html#a9b86c057290aefcc15b20231f9cabe9e" title="prints message to stdout with the given color" alt="" coords="435,56,541,83"/>
@@ -732,7 +750,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="../../d1/d22/logger_8c.html#af467d23bd5262499508f556c4f530160" title="like log_func but for formatted logs" alt="" coords="372,132,455,159"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#adbd079d224c0a17760bd34be2b94d4d4" title="logs a debug styled message &#45; called by log_fn" alt="" coords="645,56,735,83"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a86974eb20c3c2a9b8528cca2bfd1526b" title="logs an error styled message &#45; called by log_fn" alt="" coords="650,107,730,133"/>
-<area shape="rect" href="../../d1/d22/logger_8c.html#aa0609b044ca46a9e3d6e1ac8a6149422" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="628,208,752,235"/>
+<area shape="rect" href="../../d1/d22/logger_8c.html#af72d1c9f222fd1f9c9c03d2853805ccd" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="628,208,752,235"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#acb4bc62c4f5124145fdd7813a8eff213" title="logs an info styled message &#45; called by log_fn" alt="" coords="653,157,727,184"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a1979109bb7f9b3fccd5d35ab62af76b0" title="logs a warned styled message &#45; called by log_fn" alt="" coords="649,5,731,32"/>
 <area shape="rect" href="../../d3/d13/colors_8c.html#a9b86c057290aefcc15b20231f9cabe9e" title="prints message to stdout with the given color" alt="" coords="801,56,908,83"/>
@@ -778,7 +796,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="../../d1/d22/logger_8c.html#af467d23bd5262499508f556c4f530160" title="like log_func but for formatted logs" alt="" coords="200,132,283,159"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#adbd079d224c0a17760bd34be2b94d4d4" title="logs a debug styled message &#45; called by log_fn" alt="" coords="473,56,563,83"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a86974eb20c3c2a9b8528cca2bfd1526b" title="logs an error styled message &#45; called by log_fn" alt="" coords="478,107,558,133"/>
-<area shape="rect" href="../../d1/d22/logger_8c.html#aa0609b044ca46a9e3d6e1ac8a6149422" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="456,208,580,235"/>
+<area shape="rect" href="../../d1/d22/logger_8c.html#af72d1c9f222fd1f9c9c03d2853805ccd" title="returns a timestamp of format Jul 06 10:12:20 PM" alt="" coords="456,208,580,235"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#acb4bc62c4f5124145fdd7813a8eff213" title="logs an info styled message &#45; called by log_fn" alt="" coords="481,157,555,184"/>
 <area shape="rect" href="../../d1/d22/logger_8c.html#a1979109bb7f9b3fccd5d35ab62af76b0" title="logs a warned styled message &#45; called by log_fn" alt="" coords="477,5,559,32"/>
 <area shape="rect" href="../../d3/d13/colors_8c.html#a9b86c057290aefcc15b20231f9cabe9e" title="prints message to stdout with the given color" alt="" coords="629,56,736,83"/>
@@ -840,7 +858,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00248">248</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d22/logger_8c_source.html#l00238">238</a> of file <a class="el" href="../../d1/d22/logger_8c_source.html">logger.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

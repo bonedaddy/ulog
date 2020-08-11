@@ -1,4 +1,4 @@
-.TH "file_logger" 3 "Mon Aug 10 2020" "ulogger" \" -*- nroff -*-
+.TH "file_logger" 3 "Tue Aug 11 2020" "ulogger" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -12,28 +12,28 @@ file_logger
 
 .in +1c
 .ti -1c
-.RI "\fBthread_logger\fP * \fBthl\fP"
-.br
-.ti -1c
 .RI "int \fBfd\fP"
 .br
-.RI "the underlying threadsafe logger used for sycnhronization and the actual logging "
+.ti -1c
+.RI "\fBthread_logger\fP * \fBthl\fP"
+.br
+.RI "the file descriptor used for sending log information to "
 .in -1c
 .SH "Detailed Description"
 .PP 
-Definition at line 120 of file logger\&.h\&.
+Definition at line 196 of file logger\&.h\&.
 .SH "Field Documentation"
 .PP 
 .SS "int file_logger::fd"
 
 .PP
-the underlying threadsafe logger used for sycnhronization and the actual logging 
-.PP
-Definition at line 123 of file logger\&.h\&.
+Definition at line 197 of file logger\&.h\&.
 .SS "\fBthread_logger\fP* file_logger::thl"
 
 .PP
-Definition at line 121 of file logger\&.h\&.
+the file descriptor used for sending log information to 
+.PP
+Definition at line 198 of file logger\&.h\&.
 
 .SH "Author"
 .PP 
