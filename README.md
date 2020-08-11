@@ -12,6 +12,10 @@ If not using debug logging then any DEBUG level log calls are silently skipped. 
 
 I wanted a simple logging library that didnt leak memory, was well tested, and capable of color coded output. All logging libraries I found were complex code bases, leaked memory, and relied on global variables. Because of that, and as a way to better learn C development `ulog` was born.
 
+# versioning
+
+The library follows semver as the versioning scheme. Additinoally the header files have `LOGGER_VERSION` and `COLORS_VERSION` macros which include the current release number. This is to help situations in which you may be using the library my copy and pasting the code into some other repository.
+
 # installation
 
 To install you can simply copy and paste the `logger.h`, `colors.h`, `logger.c`, and `colors.c` files into whatever project you are working on. You will need to make sure that you have pthreads available to link with as the logger library has a pthreads dependency.

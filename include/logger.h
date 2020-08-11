@@ -31,6 +31,8 @@
 #include <stdbool.h>
 #include <string.h>
 
+#define LOGGER_VERSION '0.0.1'
+
 #define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 #define LOG_INFO(thl, fd, msg) \
     thl->log(thl, fd, msg, LOG_LEVELS_INFO, __FILENAME__, __LINE__);

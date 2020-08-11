@@ -23,6 +23,8 @@
 
 #include <stdbool.h>
 
+#define COLORS_VERSION '0.0.1'
+
 #define ANSI_COLOR_RED "\x1b[1;31m"
 #define ANSI_COLOR_SOFT_RED "\x1b[1;38;5;210m"
 #define ANSI_COLOR_GREEN "\x1b[1;32m"
