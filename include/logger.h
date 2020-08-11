@@ -31,7 +31,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define LOGGER_VERSION '0.0.1'
+#define LOGGER_VERSION '0.0.2-rc1'
 
 #define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 #define LOG_INFO(thl, fd, msg) \
