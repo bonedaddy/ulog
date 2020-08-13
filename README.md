@@ -22,7 +22,17 @@ The library follows semver as the versioning scheme. Additinoally the header fil
 
 # installation
 
-To install you can simply copy and paste the `logger.h`, `colors.h`, `logger.c`, and `colors.c` files into whatever project you are working on. You will need to make sure that you have pthreads available to link with as the logger library has a pthreads dependency.
+## manual (broke)
+
+Copy and paste the `logger.h`, `colors.h`, `logger.c`, and `colors.c` files into whatever project you are working on. You will need to make sure that you have pthreads available to link with as the logger library has a pthreads dependency.
+
+## clib (woke)
+
+If you use the [clib package manager](https://github.com/clibs/clib) then you can install `ulog` into your project with a single command:
+
+```shell
+$> clib install bonedaddy/ulog
+```
 
 # testing
 
