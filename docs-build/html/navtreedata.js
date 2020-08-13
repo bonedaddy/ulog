@@ -26,13 +26,16 @@ var NAVTREE =
     [ "ulog", "index.html", [
       [ "why another logging library?", "index.html#autotoc_md1", null ],
       [ "versioning", "index.html#autotoc_md2", null ],
-      [ "installation", "index.html#autotoc_md3", null ],
-      [ "testing", "index.html#autotoc_md4", null ],
-      [ "usage", "index.html#autotoc_md5", [
-        [ "no file logging", "index.html#autotoc_md6", null ],
-        [ "file logging", "index.html#autotoc_md7", null ]
+      [ "installation", "index.html#autotoc_md3", [
+        [ "manual (broke)", "index.html#autotoc_md4", null ],
+        [ "clib (woke)", "index.html#autotoc_md5", null ]
       ] ],
-      [ "license", "index.html#autotoc_md8", null ]
+      [ "testing", "index.html#autotoc_md6", null ],
+      [ "usage", "index.html#autotoc_md7", [
+        [ "no file logging", "index.html#autotoc_md8", null ],
+        [ "file logging", "index.html#autotoc_md9", null ]
+      ] ],
+      [ "license", "index.html#autotoc_md10", null ]
     ] ],
     [ "Todo List", "dd/da0/todo.html", null ],
     [ "Namespaces", "namespaces.html", [
