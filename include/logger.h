@@ -31,6 +31,10 @@
 #include <stdbool.h>
 #include <string.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define LOGGER_VERSION '0.0.2-rc1'
 
 /*!
@@ -294,3 +298,7 @@ int write_file_log(int file_descriptor, char *message);
  * @param date_buffer_len the size of the buffer
  */
 void get_time_string(char *date_buffer, size_t date_buffer_len);
+
+#ifdef __cplusplus
+}
+#endif

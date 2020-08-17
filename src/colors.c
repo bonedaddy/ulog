@@ -17,6 +17,10 @@
 #include <string.h>
 #include <unistd.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*! @brief returns an ansi color string to be used with printf
  */
 char *get_ansi_color_scheme(COLORS color) {
@@ -114,3 +118,7 @@ int write_colored(COLORS color, int file_descriptor, char *message) {
 
     return 0;
 }
+
+#ifdef __cplusplus
+}
+#endif
