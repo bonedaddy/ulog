@@ -35,6 +35,10 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*! @brief returns a new thread safe logger
  * if with_debug is false, then all debug_log calls will be ignored
  * @param with_debug whether to enable debug logging, if false debug log calls will
@@ -346,3 +350,7 @@ void get_time_string(char *date_buffer, size_t date_buffer_len) {
     strftime(date_buffer, date_buffer_len, "%b %d %r",
              localtime(&(time_t){time(NULL)}));
 }
+
+#ifdef __cplusplus
+}
+#endif
