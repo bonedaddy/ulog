@@ -95,12 +95,10 @@ int write_colored(COLORS color, int file_descriptor, char *message) {
         return -1;
     }
 
-    char *write_message =
-        calloc(1, strlen(pcolor) + strlen(reset) + strlen(message) + 2); // 2 for \n
-    if (write_message == NULL) {
-        printf("failed to calloc write_message\n");
-        return -1;
-    }
+    size_t write_msg_size =
+        strlen(color) + strlen(reset) + strlen(message) + 2; // 2 for \n
+    char write_message[write_msg_size];
+    memset(write_message, 0, write_msg_size);
 
     strcat(write_message, pcolor);
     strcat(write_message, message);
@@ -108,9 +106,6 @@ int write_colored(COLORS color, int file_descriptor, char *message) {
     strcat(write_message, "\n");
 
     int response = write(file_descriptor, write_message, strlen(write_message));
-
-    free(write_message);
-
     if (response == -1) {
         printf("failed to write colored message\n");
         return response;

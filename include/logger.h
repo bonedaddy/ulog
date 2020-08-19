@@ -35,7 +35,7 @@
 extern "C" {
 #endif
 
-#define LOGGER_VERSION '0.0.2-rc1'
+#define LOGGER_VERSION '0.0.3-rc1'
 
 /*!
  * @brief strips leading path from __FILE__
