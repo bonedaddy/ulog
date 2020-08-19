@@ -8,6 +8,10 @@
 #include <assert.h>
 #include <pthread.h>
 #include "logger.h"
+#include "colors.h"
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
 
 void *test_thread_log(void *data) {
     thread_logger *thl = (thread_logger *)data;
@@ -218,12 +222,19 @@ void test_demo_log_file(void **state) {
 }
 
 
+void test_write_colored(void **state) {
+    int fd = open("testfile", O_CREAT, 0640);
+    write_colored(COLORS_BLUE, fd, "hello world");
+    close(fd);
+}
+
 int main(void) {
     const struct CMUnitTest tests[] = {
         cmocka_unit_test(test_thread_logger),
         cmocka_unit_test(test_file_logger),
         cmocka_unit_test(test_demo_log_thread),
-        cmocka_unit_test(test_demo_log_file)
+        cmocka_unit_test(test_demo_log_file),
+        cmocka_unit_test(test_write_colored)
     };
     return cmocka_run_group_tests(tests, NULL, NULL);
 }

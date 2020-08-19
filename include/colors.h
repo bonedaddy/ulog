@@ -23,7 +23,11 @@
 
 #include <stdbool.h>
 
-#define COLORS_VERSION '0.0.2-rc1'
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define COLORS_VERSION '0.0.3-rc1'
 
 #define ANSI_COLOR_RED "\x1b[1;31m"
 #define ANSI_COLOR_SOFT_RED "\x1b[1;38;5;210m"
@@ -71,3 +75,7 @@ void print_colored(COLORS color, char *message);
  * @return Failure: 1
  */
 int write_colored(COLORS color, int file_descriptor, char *message);
+
+#ifdef __cplusplus
+}
+#endif
