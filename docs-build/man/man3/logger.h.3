@@ -1,4 +1,4 @@
-.TH "/media/solidity/DATA/Code/bonedaddy/ulog/include/logger.h" 3 "Thu Aug 13 2020" "ulogger" \" -*- nroff -*-
+.TH "/media/solidity/DATA/Code/bonedaddy/ulog/include/logger.h" 3 "Wed Aug 19 2020" "ulogger" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,7 +30,7 @@
 
 .in +1c
 .ti -1c
-.RI "#define \fBLOGGER_VERSION\fP   '0\&.0\&.2\-rc1'"
+.RI "#define \fBLOGGER_VERSION\fP   '0\&.0\&.3\-rc1'"
 .br
 .ti -1c
 .RI "#define \fB__FILENAME__\fP   (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)"
@@ -184,7 +184,7 @@ Definition in file \fBlogger\&.h\fP\&.
 .PP
 strips leading path from \fBFILE\fP 
 .PP
-Definition at line 39 of file logger\&.h\&.
+Definition at line 43 of file logger\&.h\&.
 .SS "#define LOG_DEBUG(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
@@ -206,7 +206,7 @@ if logger is created without debug enabled, this is a noop
 .PP
 
 .PP
-Definition at line 79 of file logger\&.h\&.
+Definition at line 83 of file logger\&.h\&.
 .SS "#define LOG_ERROR(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_ERROR\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
@@ -223,7 +223,7 @@ used to emit a standard ERROR log
 .PP
 
 .PP
-Definition at line 68 of file logger\&.h\&.
+Definition at line 72 of file logger\&.h\&.
 .SS "#define LOG_INFO(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_INFO\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
@@ -240,7 +240,7 @@ used to emit a standard INFO log
 .PP
 
 .PP
-Definition at line 48 of file logger\&.h\&.
+Definition at line 52 of file logger\&.h\&.
 .SS "#define LOG_WARN(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_WARN\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
@@ -257,7 +257,7 @@ used to emit a standard WARN log
 .PP
 
 .PP
-Definition at line 58 of file logger\&.h\&.
+Definition at line 62 of file logger\&.h\&.
 .SS "#define LOGF_DEBUG(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
@@ -281,7 +281,7 @@ if logger is created without debug enabled, this is a noop
 .PP
 
 .PP
-Definition at line 127 of file logger\&.h\&.
+Definition at line 131 of file logger\&.h\&.
 .SS "#define LOGF_ERROR(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_ERROR\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
@@ -302,7 +302,7 @@ used to emit a printf ERROR log
 .PP
 
 .PP
-Definition at line 115 of file logger\&.h\&.
+Definition at line 119 of file logger\&.h\&.
 .SS "#define LOGF_INFO(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_INFO\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
@@ -323,7 +323,7 @@ used to emit a printf INFO log
 .PP
 
 .PP
-Definition at line 91 of file logger\&.h\&.
+Definition at line 95 of file logger\&.h\&.
 .SS "#define LOGF_WARN(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_WARN\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
@@ -344,11 +344,11 @@ used to emit a printf WARN log
 .PP
 
 .PP
-Definition at line 103 of file logger\&.h\&.
-.SS "#define LOGGER_VERSION   '0\&.0\&.2\-rc1'"
+Definition at line 107 of file logger\&.h\&.
+.SS "#define LOGGER_VERSION   '0\&.0\&.3\-rc1'"
 
 .PP
-Definition at line 34 of file logger\&.h\&.
+Definition at line 38 of file logger\&.h\&.
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef struct \fBfile_logger\fP \fBfile_logger\fP"
@@ -356,15 +356,15 @@ Definition at line 34 of file logger\&.h\&.
 .SS "typedef void(* log_fn) (struct \fBthread_logger\fP *thl, int file_descriptor, char *message, \fBLOG_LEVELS\fP level, char *file, int line)"
 
 .PP
-Definition at line 161 of file logger\&.h\&.
+Definition at line 165 of file logger\&.h\&.
 .SS "typedef void(* log_fnf) (struct \fBthread_logger\fP *thl, int file_descriptor, \fBLOG_LEVELS\fP level, char *file, int line, char *message,\&.\&.\&.)"
 
 .PP
-Definition at line 172 of file logger\&.h\&.
+Definition at line 176 of file logger\&.h\&.
 .SS "typedef int(* mutex_fn) (pthread_mutex_t *mx)"
 
 .PP
-Definition at line 152 of file logger\&.h\&.
+Definition at line 156 of file logger\&.h\&.
 .SS "typedef struct \fBthread_logger\fP \fBthread_logger\fP"
 
 .SH "Enumeration Type Documentation"
@@ -387,7 +387,7 @@ indicates the message we are logging is of type error (color red)
 \fB\fILOG_LEVELS_DEBUG \fP\fP
 indicates the message we are logging is of type debug (color soft red) 
 .PP
-Definition at line 137 of file logger\&.h\&.
+Definition at line 141 of file logger\&.h\&.
 .SH "Function Documentation"
 .PP 
 .SS "void clear_file_logger (\fBfile_logger\fP * fhl)"
@@ -402,7 +402,7 @@ free resources for the file ogger
 .PP
 
 .PP
-Definition at line 331 of file logger\&.c\&.
+Definition at line 335 of file logger\&.c\&.
 .SS "void clear_thread_logger (\fBthread_logger\fP * thl)"
 
 .PP
@@ -415,7 +415,7 @@ free resources for the threaded logger
 .PP
 
 .PP
-Definition at line 320 of file logger\&.c\&.
+Definition at line 324 of file logger\&.c\&.
 .SS "void debug_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -432,7 +432,7 @@ logs a debug styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 292 of file logger\&.c\&.
+Definition at line 296 of file logger\&.c\&.
 .SS "void error_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -449,7 +449,7 @@ logs an error styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 265 of file logger\&.c\&.
+Definition at line 269 of file logger\&.c\&.
 .SS "void get_time_string (char * date_buffer, size_t date_buffer_len)"
 
 .PP
@@ -469,7 +469,7 @@ providing an input buffer whose length isnt at least 76 bytes will result in und
 .PP
 
 .PP
-Definition at line 344 of file logger\&.c\&.
+Definition at line 348 of file logger\&.c\&.
 .SS "void info_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -486,7 +486,7 @@ logs an info styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 211 of file logger\&.c\&.
+Definition at line 215 of file logger\&.c\&.
 .SS "void log_func (\fBthread_logger\fP * thl, int file_descriptor, char * message, \fBLOG_LEVELS\fP level, char * file, int line)"
 
 .PP
@@ -505,7 +505,7 @@ main function you should call, which will delegate to the appopriate *_log funct
 .PP
 
 .PP
-Definition at line 164 of file logger\&.c\&.
+Definition at line 168 of file logger\&.c\&.
 .SS "void logf_func (\fBthread_logger\fP * thl, int file_descriptor, \fBLOG_LEVELS\fP level, char * file, int line, char * message,  \&.\&.\&.)"
 
 .PP
@@ -526,7 +526,7 @@ like log_func but for formatted logs
 .PP
 
 .PP
-Definition at line 138 of file logger\&.c\&.
+Definition at line 142 of file logger\&.c\&.
 .SS "\fBfile_logger\fP* new_file_logger (char * output_file, bool with_debug)"
 
 .PP
@@ -539,7 +539,7 @@ returns a new \fBfile_logger\fP Calls new_thread_logger internally
 .PP
 
 .PP
-Definition at line 66 of file logger\&.c\&.
+Definition at line 70 of file logger\&.c\&.
 .SS "\fBthread_logger\fP* new_thread_logger (bool with_debug)"
 
 .PP
@@ -552,7 +552,7 @@ returns a new thread safe logger if with_debug is false, then all debug_log call
 .PP
 
 .PP
-Definition at line 43 of file logger\&.c\&.
+Definition at line 47 of file logger\&.c\&.
 .SS "void warn_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -569,7 +569,7 @@ logs a warned styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 238 of file logger\&.c\&.
+Definition at line 242 of file logger\&.c\&.
 .SS "int write_file_log (int file_descriptor, char * message)"
 
 .PP
@@ -586,7 +586,7 @@ used to write a log message to file although this really means a file descriptor
 .PP
 
 .PP
-Definition at line 108 of file logger\&.c\&.
+Definition at line 112 of file logger\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for ulogger from the source code\&.

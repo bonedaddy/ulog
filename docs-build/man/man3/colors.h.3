@@ -1,4 +1,4 @@
-.TH "/media/solidity/DATA/Code/bonedaddy/ulog/include/colors.h" 3 "Thu Aug 13 2020" "ulogger" \" -*- nroff -*-
+.TH "/media/solidity/DATA/Code/bonedaddy/ulog/include/colors.h" 3 "Wed Aug 19 2020" "ulogger" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -14,7 +14,7 @@
 
 .in +1c
 .ti -1c
-.RI "#define \fBCOLORS_VERSION\fP   '0\&.0\&.2\-rc1'"
+.RI "#define \fBCOLORS_VERSION\fP   '0\&.0\&.3\-rc1'"
 .br
 .ti -1c
 .RI "#define \fBANSI_COLOR_RED\fP   '\\x1b[1;31m'"
@@ -81,39 +81,39 @@ Definition in file \fBcolors\&.h\fP\&.
 .SS "#define ANSI_COLOR_BLUE   '\\x1b[1;34m'"
 
 .PP
-Definition at line 32 of file colors\&.h\&.
+Definition at line 36 of file colors\&.h\&.
 .SS "#define ANSI_COLOR_CYAN   '\\x1b[1;36m'"
 
 .PP
-Definition at line 34 of file colors\&.h\&.
+Definition at line 38 of file colors\&.h\&.
 .SS "#define ANSI_COLOR_GREEN   '\\x1b[1;32m'"
 
 .PP
-Definition at line 30 of file colors\&.h\&.
+Definition at line 34 of file colors\&.h\&.
 .SS "#define ANSI_COLOR_MAGENTA   '\\x1b[1;35m'"
 
 .PP
-Definition at line 33 of file colors\&.h\&.
+Definition at line 37 of file colors\&.h\&.
 .SS "#define ANSI_COLOR_RED   '\\x1b[1;31m'"
 
 .PP
-Definition at line 28 of file colors\&.h\&.
+Definition at line 32 of file colors\&.h\&.
 .SS "#define ANSI_COLOR_RESET   '\\x1b[1;0m'"
 
 .PP
-Definition at line 35 of file colors\&.h\&.
+Definition at line 39 of file colors\&.h\&.
 .SS "#define ANSI_COLOR_SOFT_RED   '\\x1b[1;38;5;210m'"
 
 .PP
-Definition at line 29 of file colors\&.h\&.
+Definition at line 33 of file colors\&.h\&.
 .SS "#define ANSI_COLOR_YELLOW   '\\x1b[1;33m'"
 
 .PP
-Definition at line 31 of file colors\&.h\&.
-.SS "#define COLORS_VERSION   '0\&.0\&.2\-rc1'"
+Definition at line 35 of file colors\&.h\&.
+.SS "#define COLORS_VERSION   '0\&.0\&.3\-rc1'"
 
 .PP
-Definition at line 26 of file colors\&.h\&.
+Definition at line 30 of file colors\&.h\&.
 .SH "Enumeration Type Documentation"
 .PP 
 .SS "enum \fBCOLORS\fP"
@@ -140,7 +140,7 @@ allows short-handed references to ANSI color schemes, and enables easier color s
 .TP
 \fB\fICOLORS_RESET \fP\fP
 .PP
-Definition at line 41 of file colors\&.h\&.
+Definition at line 45 of file colors\&.h\&.
 .SH "Function Documentation"
 .PP 
 .SS "char* format_colored (\fBCOLORS\fP color, char * message)"
@@ -162,19 +162,19 @@ you must free up the allocate memory for the returned vlaue
 .PP
 
 .PP
-Definition at line 52 of file colors\&.c\&.
+Definition at line 56 of file colors\&.c\&.
 .SS "char* get_ansi_color_scheme (\fBCOLORS\fP color)"
 
 .PP
 returns an ansi color string to be used with printf 
 .PP
-Definition at line 22 of file colors\&.c\&.
+Definition at line 26 of file colors\&.c\&.
 .SS "void print_colored (\fBCOLORS\fP color, char * message)"
 
 .PP
 prints message to stdout with the given color 
 .PP
-Definition at line 73 of file colors\&.c\&.
+Definition at line 77 of file colors\&.c\&.
 .SS "int write_colored (\fBCOLORS\fP color, int file_descriptor, char * message)"
 
 .PP
@@ -189,7 +189,7 @@ Failure: 1
 .PP
 
 .PP
-Definition at line 82 of file colors\&.c\&.
+Definition at line 86 of file colors\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for ulogger from the source code\&.

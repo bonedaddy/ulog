@@ -1,4 +1,4 @@
-.TH "/media/solidity/DATA/Code/bonedaddy/ulog/src/logger.c" 3 "Thu Aug 13 2020" "ulogger" \" -*- nroff -*-
+.TH "/media/solidity/DATA/Code/bonedaddy/ulog/src/logger.c" 3 "Wed Aug 19 2020" "ulogger" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -124,7 +124,7 @@ free resources for the file ogger
 .PP
 
 .PP
-Definition at line 331 of file logger\&.c\&.
+Definition at line 335 of file logger\&.c\&.
 .SS "void clear_thread_logger (\fBthread_logger\fP * thl)"
 
 .PP
@@ -137,7 +137,7 @@ free resources for the threaded logger
 .PP
 
 .PP
-Definition at line 320 of file logger\&.c\&.
+Definition at line 324 of file logger\&.c\&.
 .SS "void debug_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -154,7 +154,7 @@ logs a debug styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 292 of file logger\&.c\&.
+Definition at line 296 of file logger\&.c\&.
 .SS "void error_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -171,7 +171,7 @@ logs an error styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 265 of file logger\&.c\&.
+Definition at line 269 of file logger\&.c\&.
 .SS "void get_time_string (char * date_buffer, size_t date_buffer_len)"
 
 .PP
@@ -191,7 +191,7 @@ providing an input buffer whose length isnt at least 76 bytes will result in und
 .PP
 
 .PP
-Definition at line 344 of file logger\&.c\&.
+Definition at line 348 of file logger\&.c\&.
 .SS "void info_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -208,7 +208,7 @@ logs an info styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 211 of file logger\&.c\&.
+Definition at line 215 of file logger\&.c\&.
 .SS "void log_func (\fBthread_logger\fP * thl, int file_descriptor, char * message, \fBLOG_LEVELS\fP level, char * file, int line)"
 
 .PP
@@ -227,7 +227,7 @@ main function you should call, which will delegate to the appopriate *_log funct
 .PP
 
 .PP
-Definition at line 164 of file logger\&.c\&.
+Definition at line 168 of file logger\&.c\&.
 .SS "void logf_func (\fBthread_logger\fP * thl, int file_descriptor, \fBLOG_LEVELS\fP level, char * file, int line, char * message,  \&.\&.\&.)"
 
 .PP
@@ -248,7 +248,7 @@ like log_func but for formatted logs
 .PP
 
 .PP
-Definition at line 138 of file logger\&.c\&.
+Definition at line 142 of file logger\&.c\&.
 .SS "\fBfile_logger\fP* new_file_logger (char * output_file, bool with_debug)"
 
 .PP
@@ -261,7 +261,7 @@ returns a new \fBfile_logger\fP Calls new_thread_logger internally
 .PP
 
 .PP
-Definition at line 66 of file logger\&.c\&.
+Definition at line 70 of file logger\&.c\&.
 .SS "\fBthread_logger\fP* new_thread_logger (bool with_debug)"
 
 .PP
@@ -274,7 +274,7 @@ returns a new thread safe logger if with_debug is false, then all debug_log call
 .PP
 
 .PP
-Definition at line 43 of file logger\&.c\&.
+Definition at line 47 of file logger\&.c\&.
 .SS "void warn_log (\fBthread_logger\fP * thl, int file_descriptor, char * message)"
 
 .PP
@@ -291,7 +291,7 @@ logs a warned styled message - called by log_fn
 .PP
 
 .PP
-Definition at line 238 of file logger\&.c\&.
+Definition at line 242 of file logger\&.c\&.
 .SS "int write_file_log (int file_descriptor, char * message)"
 
 .PP
@@ -308,7 +308,7 @@ used to write a log message to file although this really means a file descriptor
 .PP
 
 .PP
-Definition at line 108 of file logger\&.c\&.
+Definition at line 112 of file logger\&.c\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for ulogger from the source code\&.
