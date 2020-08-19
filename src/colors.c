@@ -96,7 +96,7 @@ int write_colored(COLORS color, int file_descriptor, char *message) {
     }
 
     size_t write_msg_size =
-        strlen(color) + strlen(reset) + strlen(message) + 2; // 2 for \n
+        strlen(pcolor) + strlen(reset) + strlen(message) + 2; // 2 for \n
     char write_message[write_msg_size];
     memset(write_message, 0, write_msg_size);
 
