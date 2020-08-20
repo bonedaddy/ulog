@@ -23,12 +23,6 @@
 
 #include <stdbool.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#define COLORS_VERSION '0.0.3-rc1'
-
 #define ANSI_COLOR_RED "\x1b[1;31m"
 #define ANSI_COLOR_SOFT_RED "\x1b[1;38;5;210m"
 #define ANSI_COLOR_GREEN "\x1b[1;32m"
@@ -37,6 +31,10 @@ extern "C" {
 #define ANSI_COLOR_MAGENTA "\x1b[1;35m"
 #define ANSI_COLOR_CYAN "\x1b[1;36m"
 #define ANSI_COLOR_RESET "\x1b[1;0m"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*! @brief allows short-handed references to ANSI color schemes, and enables easier
  * color selection anytime you want to extend the available colors with an additional
