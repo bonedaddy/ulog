@@ -7,6 +7,8 @@
  * are using
  */
 
+#pragma once
+
 /*!
  * @brief denotes the current version of the ulog library
  */
