@@ -31,10 +31,6 @@
 #include <stdbool.h>
 #include <string.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #define LOGGER_VERSION '0.0.3-rc1'
 
 /*!
@@ -131,6 +127,11 @@ extern "C" {
 #define LOGF_DEBUG(thl, fd, msg, ...) \
     thl->logf(thl, fd, LOG_LEVELS_DEBUG, __FILENAME__, __LINE__, msg, __VA_ARGS__);
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 /*! @struct base struct used by the thread_logger
  */
 struct thread_logger;
@@ -155,6 +156,17 @@ typedef enum {
  */
 typedef int (*mutex_fn)(pthread_mutex_t *mx);
 
+#ifdef __cplusplus
+/*! @typedef signature used by the thread_logger for log_fn calls
+ * @param thl pointer to an instance of thread_logger
+ * @param file_descriptor file descriptor to write log messages to, if 0 then only
+ * stdout is used
+ * @param message the actual message we want to log
+ * @param level the log level to use (effects color used)
+ */
+typedef void (*log_fn)(struct thread_logger *thl, int file_descriptor, const char *message,
+                       LOG_LEVELS level, const char *file, int line);
+#else
 /*! @typedef signature used by the thread_logger for log_fn calls
  * @param thl pointer to an instance of thread_logger
  * @param file_descriptor file descriptor to write log messages to, if 0 then only
@@ -164,7 +176,20 @@ typedef int (*mutex_fn)(pthread_mutex_t *mx);
  */
 typedef void (*log_fn)(struct thread_logger *thl, int file_descriptor, char *message,
                        LOG_LEVELS level, char *file, int line);
+#endif
 
+#ifdef __cplusplus
+/*! @typedef signatured used by the thread_logger for printf style log_fn calls
+ * @param thl pointer to an instance of thread_logger
+ * @param file_descriptor file descriptor to write log messages to, if 0 then only
+ * stdout is used
+ * @param level the log level to use (effects color used)
+ * @param message format string like `%sFOO%sBAR`
+ * @param ... values to supply to message
+ */
+typedef void (*log_fnf)(struct thread_logger *thl, int file_descriptor,
+                        LOG_LEVELS level, const char *file, int line, const char *message, ...);
+#else
 /*! @typedef signatured used by the thread_logger for printf style log_fn calls
  * @param thl pointer to an instance of thread_logger
  * @param file_descriptor file descriptor to write log messages to, if 0 then only
@@ -175,6 +200,7 @@ typedef void (*log_fn)(struct thread_logger *thl, int file_descriptor, char *mes
  */
 typedef void (*log_fnf)(struct thread_logger *thl, int file_descriptor,
                         LOG_LEVELS level, char *file, int line, char *message, ...);
+#endif
 
 /*! @typedef a thread safe logger
  * @brief guards all log calls with a mutex lock/unlock
