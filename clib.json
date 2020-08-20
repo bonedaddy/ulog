@@ -15,6 +15,7 @@
   "src": [
     "include/colors.h",
     "include/logger.h",
+    "include/version.h",
     "src/colors.c",
     "src/logger.c"
   ]

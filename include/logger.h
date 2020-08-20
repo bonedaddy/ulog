@@ -31,8 +31,6 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define LOGGER_VERSION '0.0.3-rc1'
-
 /*!
  * @brief strips leading path from __FILE__
  */
