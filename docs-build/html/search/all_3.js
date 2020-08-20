@@ -12,9 +12,8 @@ var searchData=
   ['colors_5fred_20',['COLORS_RED',['../da/dd8/colors_8h.html#ab983350d6d1201c0ebd709320e7a0d50ac8f14e92546ee048c1eae63be593e65d',1,'colors.h']]],
   ['colors_5freset_21',['COLORS_RESET',['../da/dd8/colors_8h.html#ab983350d6d1201c0ebd709320e7a0d50aed65db70dbd920f59e88617d35231415',1,'colors.h']]],
   ['colors_5fsoft_5fred_22',['COLORS_SOFT_RED',['../da/dd8/colors_8h.html#ab983350d6d1201c0ebd709320e7a0d50a5c5b719a36460b04a8baf7112a9bb34d',1,'colors.h']]],
-  ['colors_5fversion_23',['COLORS_VERSION',['../da/dd8/colors_8h.html#a1f038d9a631020d14a84b7cc6dde4cd1',1,'colors.h']]],
-  ['colors_5fyellow_24',['COLORS_YELLOW',['../da/dd8/colors_8h.html#ab983350d6d1201c0ebd709320e7a0d50a3b3a3f78af58206c5b184121150a1391',1,'colors.h']]],
-  ['conf_25',['conf',['../d5/d89/namespaceconf.html',1,'']]],
-  ['conf_2epy_26',['conf.py',['../d1/d3e/conf_8py.html',1,'']]],
-  ['copyright_27',['copyright',['../d5/d89/namespaceconf.html#a33fa97cf51dcb25970fbf53f10159589',1,'conf']]]
+  ['colors_5fyellow_23',['COLORS_YELLOW',['../da/dd8/colors_8h.html#ab983350d6d1201c0ebd709320e7a0d50a3b3a3f78af58206c5b184121150a1391',1,'colors.h']]],
+  ['conf_24',['conf',['../d5/d89/namespaceconf.html',1,'']]],
+  ['conf_2epy_25',['conf.py',['../d1/d3e/conf_8py.html',1,'']]],
+  ['copyright_26',['copyright',['../d5/d89/namespaceconf.html#a33fa97cf51dcb25970fbf53f10159589',1,'conf']]]
 ];
