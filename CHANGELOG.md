@@ -1,3 +1,8 @@
+# v0.0.3 (wip)
+
+* Fixes issues with usage in C++ code [#22](https://github.com/bonedaddy/ulog/pull/22)
+* Remove colored write allocation [#21](https://github.com/bonedaddy/ulog/pull/21)
+
 # v0.0.2
 
 * Enables use in C++ codebases [#19](https://github.com/bonedaddy/ulog/pull/19)

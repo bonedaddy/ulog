@@ -173,8 +173,6 @@ void log_func(thread_logger *thl, int file_descriptor, char *message,
 
     get_time_string(time_str, 76);
 
-    printf("time debug: %s\n", time_str);
-
     char location_info[strlen(file) + sizeof(line) + 4];
     memset(location_info, 0, sizeof(location_info));
 
