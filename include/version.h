@@ -12,4 +12,4 @@
 /*!
  * @brief denotes the current version of the ulog library
  */
-#define ULOG_VERSION "v0.0.3-rc1"
+#define ULOG_VERSION "v0.0.3-rc2"
