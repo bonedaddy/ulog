@@ -2,13 +2,22 @@
 
 ![](./example.png)
 
-`ulog` (uber log) is a lightweight and threadsafe logging library for C based programs. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind. 
+`ulog` (uber log) is a lightweight and threadsafe logging library written in C, with support for C++. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind. 
 
 If not using debug logging then any DEBUG level log calls are silently skipped. The logger is threadsafe in that multiple threads can't log at the same time. In practice there is very little lock contention and in all honesty you will probably never have to worry about it.
 
 In terms of memory usage, the only memory allocations conducted by this library are when initializing the logger. During actual logging there is no memory allocations whatsoever, as we use stack allocated variables. In practice logger initialization consumes arounds 7.4 KiB of memory, while regular logger usage general consumes no more than 3 -> 3.4 KiB of memory at any one time.
 
 **Please be aware that after calling `clear_thread_logger` or `clear_file_logger` using the logger results in undefined behavior, likely a panic causing the program to exit. Having one or more threads initiate a log invocation while concurrently calling `clear_thread_logger` or `clear_file_logger` results in undefined behavior. When clearing the logger you must be certain no other threads will attempt to use the logger.**
+
+# features
+
+* C/C++ support
+* lightweight (3 -> 3.4 KiB memory consumption)
+* threadsafe
+* color coded logs
+* stdout and file descriptor logging
+* file and line number that emitted the log included
 
 # why another logging library?
 
@@ -18,13 +27,13 @@ Interested in reading more about how `ulog` was born? [I published a blog post d
 
 # versioning
 
-The library follows semver as the versioning scheme. Additinoally the header files have `LOGGER_VERSION` and `COLORS_VERSION` macros which include the current release number. This is to help situations in which you may be using the library my copy and pasting the code into some other repository.
+The library follows the semver versioning scheme. Additionally a `version.h` header file has the current release version listed as a macro.
 
 # installation
 
 ## manual (broke)
 
-Copy and paste the `logger.h`, `colors.h`, `logger.c`, and `colors.c` files into whatever project you are working on. You will need to make sure that you have pthreads available to link with as the logger library has a pthreads dependency.
+Copy and paste the `logger.h`, `colors.h`, `version.h`, `logger.c`, and `colors.c` files into whatever project you are working on. You will need to make sure that you have pthreads available to link with as the logger library has a pthreads dependency.
 
 ## clib (woke)
 
