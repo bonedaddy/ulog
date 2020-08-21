@@ -43,7 +43,7 @@ deploy: # this is a hacky workaround as script provider is causing problems
   on:
     branch: master
     tags: true
-    repo: RTradeLtd/libcp2p
+    repo: bonedaddy/ulog
 
 notifications:
   email: false
