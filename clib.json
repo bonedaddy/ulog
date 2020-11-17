@@ -1,6 +1,6 @@
 {
   "name": "ulog",
-  "version": "0.0.3-rc2",
+  "version": "0.0.3-rc3",
   "license": "agpl-v3",
   "description": "ulog (uber log) is a lightweight and threadsafe logger in C that provides color coded output, as well as the ability to send logs to a file",
   "repo": "bonedaddy/ulog",
@@ -17,6 +17,7 @@
     "include/logger.h",
     "include/version.h",
     "src/colors.c",
-    "src/logger.c"
+    "src/logger.c",
+    "cmake/CMakeLists.txt"
   ]
 }
