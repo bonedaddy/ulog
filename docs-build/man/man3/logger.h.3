@@ -1,4 +1,4 @@
-.TH "/media/solidity/DATA/Code/bonedaddy/ulog/include/logger.h" 3 "Thu Aug 20 2020" "ulogger" \" -*- nroff -*-
+.TH "/media/solidity/DATA/Code/bonedaddy/ulog/include/logger.h" 3 "Tue Dec 15 2020" "ulogger" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -65,6 +65,38 @@
 .RI "#define \fBLOGF_DEBUG\fP(thl,  fd,  msg, \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 .br
 .RI "used to emit a printf DEBUG log "
+.ti -1c
+.RI "#define \fBfLOG_INFO\fP(fhl,  msg)   fhl\->thl\->log(fhl\->thl, fhl\->fd, msg, \fBLOG_LEVELS_INFO\fP, \fB__FILENAME__\fP, __LINE__);"
+.br
+.RI "like LOG_INFO except for file logging "
+.ti -1c
+.RI "#define \fBfLOG_WARN\fP(fhl,  msg)   fhl\->thl\->log(fhl\->thl, fhl\->fd, msg, \fBLOG_LEVELS_WARN\fP, \fB__FILENAME__\fP, __LINE__);"
+.br
+.RI "like LOG_WARN except for file logging "
+.ti -1c
+.RI "#define \fBfLOG_ERROR\fP(fhl,  msg)   fhl\->thl\->log(fhl\->thl, fhl\->fd, msg, \fBLOG_LEVELS_ERROR\fP, \fB__FILENAME__\fP, __LINE__);"
+.br
+.RI "like LOG_ERROR except for file logging "
+.ti -1c
+.RI "#define \fBfLOG_DEBUG\fP(fhl,  msg)   fhl\->thl\->log(fhl\->thl, fhl\->fd, msg, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__);"
+.br
+.RI "like LOG_DEBUG except for file logging "
+.ti -1c
+.RI "#define \fBfLOGF_INFO\fP(fhl,  msg, \&.\&.\&.)   fhl\->thl\->logf(fhl\->thl, fhl\->fd, \fBLOG_LEVELS_INFO\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
+.br
+.RI "like LOGF_INFO except for file logging "
+.ti -1c
+.RI "#define \fBfLOGF_WARN\fP(fhl,  msg, \&.\&.\&.)   fhl\->thl\->logf(fhl\->thl, fhl\->fd, \fBLOG_LEVELS_WARN\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
+.br
+.RI "like LOGF_WARN except for file logging "
+.ti -1c
+.RI "#define \fBfLOGF_ERROR\fP(fhl,  msg, \&.\&.\&.)   fhl\->thl\->logf(fhl\->thl, fhl\->fd, \fBLOG_LEVELS_ERROR\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
+.br
+.RI "like LOGF_ERROR except for file logging "
+.ti -1c
+.RI "#define \fBfLOGF_DEBUG\fP(fhl,  msg, \&.\&.\&.)   fhl\->thl\->logf(fhl\->thl, fhl\->fd, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
+.br
+.RI "like LOGF_DEBUG except for file logging "
 .in -1c
 .SS "Typedefs"
 
@@ -181,7 +213,55 @@ Definition in file \fBlogger\&.h\fP\&.
 .PP
 strips leading path from \fBFILE\fP 
 .PP
-Definition at line 37 of file logger\&.h\&.
+Definition at line 38 of file logger\&.h\&.
+.SS "#define fLOG_DEBUG(fhl, msg)   fhl\->thl\->log(fhl\->thl, fhl\->fd, msg, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__);"
+
+.PP
+like LOG_DEBUG except for file logging 
+.PP
+Definition at line 150 of file logger\&.h\&.
+.SS "#define fLOG_ERROR(fhl, msg)   fhl\->thl\->log(fhl\->thl, fhl\->fd, msg, \fBLOG_LEVELS_ERROR\fP, \fB__FILENAME__\fP, __LINE__);"
+
+.PP
+like LOG_ERROR except for file logging 
+.PP
+Definition at line 144 of file logger\&.h\&.
+.SS "#define fLOG_INFO(fhl, msg)   fhl\->thl\->log(fhl\->thl, fhl\->fd, msg, \fBLOG_LEVELS_INFO\fP, \fB__FILENAME__\fP, __LINE__);"
+
+.PP
+like LOG_INFO except for file logging 
+.PP
+Definition at line 132 of file logger\&.h\&.
+.SS "#define fLOG_WARN(fhl, msg)   fhl\->thl\->log(fhl\->thl, fhl\->fd, msg, \fBLOG_LEVELS_WARN\fP, \fB__FILENAME__\fP, __LINE__);"
+
+.PP
+like LOG_WARN except for file logging 
+.PP
+Definition at line 138 of file logger\&.h\&.
+.SS "#define fLOGF_DEBUG(fhl, msg,  \&.\&.\&.)   fhl\->thl\->logf(fhl\->thl, fhl\->fd, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
+
+.PP
+like LOGF_DEBUG except for file logging 
+.PP
+Definition at line 174 of file logger\&.h\&.
+.SS "#define fLOGF_ERROR(fhl, msg,  \&.\&.\&.)   fhl\->thl\->logf(fhl\->thl, fhl\->fd, \fBLOG_LEVELS_ERROR\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
+
+.PP
+like LOGF_ERROR except for file logging 
+.PP
+Definition at line 168 of file logger\&.h\&.
+.SS "#define fLOGF_INFO(fhl, msg,  \&.\&.\&.)   fhl\->thl\->logf(fhl\->thl, fhl\->fd, \fBLOG_LEVELS_INFO\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
+
+.PP
+like LOGF_INFO except for file logging 
+.PP
+Definition at line 156 of file logger\&.h\&.
+.SS "#define fLOGF_WARN(fhl, msg,  \&.\&.\&.)   fhl\->thl\->logf(fhl\->thl, fhl\->fd, \fBLOG_LEVELS_WARN\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
+
+.PP
+like LOGF_WARN except for file logging 
+.PP
+Definition at line 162 of file logger\&.h\&.
 .SS "#define LOG_DEBUG(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
@@ -203,7 +283,7 @@ if logger is created without debug enabled, this is a noop
 .PP
 
 .PP
-Definition at line 77 of file logger\&.h\&.
+Definition at line 78 of file logger\&.h\&.
 .SS "#define LOG_ERROR(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_ERROR\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
@@ -220,7 +300,7 @@ used to emit a standard ERROR log
 .PP
 
 .PP
-Definition at line 66 of file logger\&.h\&.
+Definition at line 67 of file logger\&.h\&.
 .SS "#define LOG_INFO(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_INFO\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
@@ -237,7 +317,7 @@ used to emit a standard INFO log
 .PP
 
 .PP
-Definition at line 46 of file logger\&.h\&.
+Definition at line 47 of file logger\&.h\&.
 .SS "#define LOG_WARN(thl, fd, msg)   thl\->log(thl, fd, msg, \fBLOG_LEVELS_WARN\fP, \fB__FILENAME__\fP, __LINE__);"
 
 .PP
@@ -254,7 +334,7 @@ used to emit a standard WARN log
 .PP
 
 .PP
-Definition at line 56 of file logger\&.h\&.
+Definition at line 57 of file logger\&.h\&.
 .SS "#define LOGF_DEBUG(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_DEBUG\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
@@ -278,7 +358,7 @@ if logger is created without debug enabled, this is a noop
 .PP
 
 .PP
-Definition at line 125 of file logger\&.h\&.
+Definition at line 126 of file logger\&.h\&.
 .SS "#define LOGF_ERROR(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_ERROR\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
@@ -299,7 +379,7 @@ used to emit a printf ERROR log
 .PP
 
 .PP
-Definition at line 113 of file logger\&.h\&.
+Definition at line 114 of file logger\&.h\&.
 .SS "#define LOGF_INFO(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_INFO\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
@@ -320,7 +400,7 @@ used to emit a printf INFO log
 .PP
 
 .PP
-Definition at line 89 of file logger\&.h\&.
+Definition at line 90 of file logger\&.h\&.
 .SS "#define LOGF_WARN(thl, fd, msg,  \&.\&.\&.)   thl\->logf(thl, fd, \fBLOG_LEVELS_WARN\fP, \fB__FILENAME__\fP, __LINE__, msg, __VA_ARGS__);"
 
 .PP
@@ -341,7 +421,7 @@ used to emit a printf WARN log
 .PP
 
 .PP
-Definition at line 101 of file logger\&.h\&.
+Definition at line 102 of file logger\&.h\&.
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef struct \fBfile_logger\fP \fBfile_logger\fP"
@@ -349,15 +429,15 @@ Definition at line 101 of file logger\&.h\&.
 .SS "typedef void(* log_fn) (struct \fBthread_logger\fP *thl, int file_descriptor, char *message, \fBLOG_LEVELS\fP level, char *file, int line)"
 
 .PP
-Definition at line 175 of file logger\&.h\&.
+Definition at line 223 of file logger\&.h\&.
 .SS "typedef void(* log_fnf) (struct \fBthread_logger\fP *thl, int file_descriptor, \fBLOG_LEVELS\fP level, char *file, int line, char *message,\&.\&.\&.)"
 
 .PP
-Definition at line 200 of file logger\&.h\&.
+Definition at line 248 of file logger\&.h\&.
 .SS "typedef int(* mutex_fn) (pthread_mutex_t *mx)"
 
 .PP
-Definition at line 154 of file logger\&.h\&.
+Definition at line 202 of file logger\&.h\&.
 .SS "typedef struct \fBthread_logger\fP \fBthread_logger\fP"
 
 .SH "Enumeration Type Documentation"
@@ -380,7 +460,7 @@ indicates the message we are logging is of type error (color red)
 \fB\fILOG_LEVELS_DEBUG \fP\fP
 indicates the message we are logging is of type debug (color soft red) 
 .PP
-Definition at line 139 of file logger\&.h\&.
+Definition at line 187 of file logger\&.h\&.
 .SH "Function Documentation"
 .PP 
 .SS "void clear_file_logger (\fBfile_logger\fP * fhl)"
