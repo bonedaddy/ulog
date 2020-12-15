@@ -103,6 +103,8 @@ clear_thread_logger(thl);
 
 ## file logging
 
+The file logging examples leverage the helper macros dedicated for file logging. These are prefixed with `fLOG`. Printf style logging would be denoted as `fLOGF_<LEVEL>`, whereas regular logging would be denoted as `fLOG_<LEVEL>`. These are written to minimize typing, as the macros handle all the struct member referencing meaning you simply need to supply the struct when invoking the macros.
+
 ```C
 #include <stdbool.h>
 #include "logger.h"
@@ -110,17 +112,17 @@ clear_thread_logger(thl);
 
 file_logger *fhl = new_file_logger("testfile.log", true);
 
-LOG_INFO(fhl->thl, fhl->fd, "this is an info log");
-LOG_WARN(fhl->thl, fhl->fd,"this is a warn log");
-LOG_ERROR(fhl->thl, fhl->fd, "this is an error log");
-LOG_DEBUG(fhl->thl, fhl->fd, "this is a debug log");
+fLOG_INFO(fhl, "this is an info log");
+fLOG_WARN(fhl, "this is a warn log");
+fLOG_ERROR(fhl, "this is an error log");
+fLOG_DEBUG(fhl, "this is a debug log");
 
-LOGF_INFO(fhl->thl, fhl->fd, "this is a %s style info log", "printf");
-LOGF_WARN(fhl->thl, fhl->fd, "this is a %s style warn log", "printf");
-LOGF_ERROR(fhl->thl, fhl->fd, "this is a %s style error log", "printf");
-LOGF_DEBUG(fhl->thl, fhl->fd, "this is a %s style debug log", "printf");
+fLOGF_INFO(fhl, "this is a %s style info log", "printf");
+fLOGF_WARN(fhl, "this is a %s style warn log", "printf");
+fLOGF_ERROR(fhl, "this is a %s style error log", "printf");
+fLOGF_DEBUG(fhl, "this is a %s style debug log", "printf");
 
-// if you dont want to loger to a file and just stdout, simply set the `fhl->fd` value to 0
+// if you dont want to log to a file you will want to use the LOG_ and LOGF_ macros
 LOG_INFO(fhl->thl, 0, "this will only log to stdout");
 LOGF_INFO(fhl->thl, 0, "this will only log to %s", "stdout");
 
