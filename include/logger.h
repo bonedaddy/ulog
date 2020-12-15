@@ -125,6 +125,54 @@
 #define LOGF_DEBUG(thl, fd, msg, ...) \
     thl->logf(thl, fd, LOG_LEVELS_DEBUG, __FILENAME__, __LINE__, msg, __VA_ARGS__);
 
+/*!
+  * @brief like LOG_INFO except for file logging
+*/
+#define fLOG_INFO(fhl, msg) \
+    fhl->thl->log(fhl->thl, fhl->fd, msg, LOG_LEVELS_INFO, __FILENAME__, __LINE__);
+
+/*!
+  * @brief like LOG_WARN except for file logging
+*/
+#define fLOG_WARN(fhl, msg) \
+    fhl->thl->log(fhl->thl, fhl->fd, msg, LOG_LEVELS_WARN, __FILENAME__, __LINE__);
+
+/*!
+  * @brief like LOG_ERROR except for file logging
+*/
+#define fLOG_ERROR(fhl, msg) \
+    fhl->thl->log(fhl->thl, fhl->fd, msg, LOG_LEVELS_ERROR, __FILENAME__, __LINE__);
+
+/*!
+  * @brief like LOG_DEBUG except for file logging
+*/
+#define fLOG_DEBUG(fhl, msg) \
+    fhl->thl->log(fhl->thl, fhl->fd, msg, LOG_LEVELS_DEBUG, __FILENAME__, __LINE__);
+
+/*!
+  * @brief like LOGF_INFO except for file logging
+*/
+#define fLOGF_INFO(fhl, msg, ...) \
+    fhl->thl->logf(fhl->thl, fhl->fd, LOG_LEVELS_INFO, __FILENAME__, __LINE__, msg, __VA_ARGS__);
+
+/*!
+  * @brief like LOGF_WARN except for file logging
+*/
+#define fLOGF_WARN(fhl, msg, ...) \
+    fhl->thl->logf(fhl->thl, fhl->fd, LOG_LEVELS_WARN, __FILENAME__, __LINE__, msg, __VA_ARGS__);
+
+/*!
+  * @brief like LOGF_ERROR except for file logging
+*/
+#define fLOGF_ERROR(fhl, msg, ...) \
+    fhl->thl->logf(fhl->thl, fhl->fd, LOG_LEVELS_ERROR, __FILENAME__, __LINE__, msg, __VA_ARGS__);
+
+/*!
+  * @brief like LOGF_DEBUG except for file logging
+*/
+#define fLOGF_DEBUG(fhl, msg, ...) \
+    fhl->thl->logf(fhl->thl, fhl->fd, LOG_LEVELS_DEBUG, __FILENAME__, __LINE__, msg, __VA_ARGS__);
+
 #ifdef __cplusplus
 extern "C" {
 #endif

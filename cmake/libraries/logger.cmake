@@ -17,4 +17,7 @@ add_executable(logger-test-cpp ./tests/logger_test.cpp)
 target_link_libraries(logger-test-cpp liblogger)
 target_link_libraries(logger-test-cpp cmocka)
 target_compile_options(logger-test-cpp PRIVATE ${cxx-flags})
-add_test(NAME LoggerTest COMMAND logger-test-c)
+
+
+add_test(NAME LoggerTestC COMMAND logger-test-c)
+add_test(NAME LoggerTestCpp COMMAND logger-test-cpp)

@@ -191,10 +191,12 @@ void test_get_ansi_color_scheme(void **state) {
 
 void test_demo_log_thread(void **state) {
     thread_logger *thl = new_thread_logger(true);
+    
     LOG_INFO(thl, 0, "this is an info log");
     LOG_WARN(thl, 0, "this is a warn log");
     LOG_ERROR(thl, 0, "this is an error log");
     LOG_DEBUG(thl, 0, "this is a debug log");
+
     LOGF_INFO(thl, 0, "this is a %s style info log", "printf");
     LOGF_WARN(thl, 0, "this is a %s style warn log", "printf");
     LOGF_ERROR(thl, 0, "this is a %s style error log", "printf");
@@ -205,16 +207,19 @@ void test_demo_log_thread(void **state) {
 
 void test_demo_log_file(void **state) {
     file_logger *fhl = new_file_logger("testfile.log", true);
-    LOG_INFO(fhl->thl, fhl->fd, "this is an info log");
-    LOG_WARN(fhl->thl, fhl->fd,"this is a warn log");
-    LOG_ERROR(fhl->thl, fhl->fd, "this is an error log");
-    LOG_DEBUG(fhl->thl, fhl->fd, "this is a debug log");
-    LOGF_INFO(fhl->thl, fhl->fd, "this is a %s style info log", "printf");
-    LOGF_WARN(fhl->thl, fhl->fd, "this is a %s style warn log", "printf");
-    LOGF_ERROR(fhl->thl, fhl->fd, "this is a %s style error log", "printf");
-    LOGF_DEBUG(fhl->thl, fhl->fd, "this is a %s style debug log", "printf");
+    
+    fLOG_INFO(fhl, "this is an info log");
+    fLOG_WARN(fhl, "this is a warn log");
+    fLOG_ERROR(fhl, "this is an error log");
+    fLOG_DEBUG(fhl, "this is a debug log");
 
-    // if you dont want to loger to a file and just stdout, simply set the `fhl->fd` value to 0
+
+    fLOGF_INFO(fhl, "this is a %s style info log", "printf");
+    fLOGF_WARN(fhl, "this is a %s style warn log", "printf");
+    fLOGF_ERROR(fhl, "this is a %s style error log", "printf");
+    fLOGF_DEBUG(fhl, "this is a %s style debug log", "printf");
+
+    // if you dont want to log to a file you will want to use the LOG_ and LOGF_ macros
     LOG_INFO(fhl->thl, 0, "this will only log to stdout");
     LOGF_INFO(fhl->thl, 0, "this will only log to %s", "stdout");
 
