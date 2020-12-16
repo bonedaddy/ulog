@@ -1,4 +1,4 @@
-.TH "thread_logger" 3 "Tue Dec 15 2020" "ulogger" \" -*- nroff -*-
+.TH "thread_logger" 3 "Wed Dec 16 2020" "ulogger" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -37,43 +37,43 @@ thread_logger
 .in -1c
 .SH "Detailed Description"
 .PP 
-Definition at line 258 of file logger\&.h\&.
+Definition at line 250 of file logger\&.h\&.
 .SH "Field Documentation"
 .PP 
 .SS "bool thread_logger::debug"
 
 .PP
-Definition at line 259 of file logger\&.h\&.
+Definition at line 251 of file logger\&.h\&.
 .SS "\fBmutex_fn\fP thread_logger::lock"
 
 .PP
 used for synchronization across threads 
 .PP
-Definition at line 261 of file logger\&.h\&.
+Definition at line 253 of file logger\&.h\&.
 .SS "\fBlog_fn\fP thread_logger::log"
 
 .PP
 helper function for pthread_mutex_unlock 
 .PP
-Definition at line 263 of file logger\&.h\&.
+Definition at line 255 of file logger\&.h\&.
 .SS "\fBlog_fnf\fP thread_logger::logf"
 
 .PP
 function that gets called for all regular logging 
 .PP
-Definition at line 265 of file logger\&.h\&.
+Definition at line 257 of file logger\&.h\&.
 .SS "pthread_mutex_t thread_logger::mutex"
 
 .PP
 indicates whether we will action on debug logs 
 .PP
-Definition at line 260 of file logger\&.h\&.
+Definition at line 252 of file logger\&.h\&.
 .SS "\fBmutex_fn\fP thread_logger::unlock"
 
 .PP
 helper function for pthread_mutex_lock 
 .PP
-Definition at line 262 of file logger\&.h\&.
+Definition at line 254 of file logger\&.h\&.
 
 .SH "Author"
 .PP 
