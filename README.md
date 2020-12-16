@@ -75,9 +75,13 @@ $> ctest -T memcheck
 
 # usage
 
-The following code samples produce the output shown in the screenshot at the start of the readme.
+The primary method of interacting with ulog is by using macros. The macros allow you to emit logs at various levels, minimizing the amount of typing required to do so. There are a total of four macros that can be used, the base macros are denoted in the form of `LOG_<LEVEL>` and `LOGF_<LEVEL>` which provide the capabilities to emit logs to standard out. The `LOG_` macros can be used to emit a log message as is, that is to say you provide a single message to emit, while the `LOGF_` macros can be used to emit a log message formatted according to the printf formatting rules leveraging variadic arguments. 
 
-## no file logging
+There are two additional macros that mimic `LOG_<LEVEL>` and `LOGF_<LEVEL>` however they will also log to a given file, while also logging to stdout. They are `fLOG_<LEVEL>` and `fLOG_<LEVEL>`. The main difference between these, other than the fact that file logging capabilities are provided, is that the `LOG_<LEVEL>` and `LOGF_<LEVEL>` macros take in an instance of `thread_logger` while the `fLOG_<LEVEL>` and `fLOGF_<LEVEL>` macros take in an instance of `file_logger`.
+
+Below you'll find examples that showcase how to generate the logs that were captured in the screenshot displayed at the beginning of this readme.
+
+## stdout only
 
 ```C
 #include <stdbool.H>
@@ -101,9 +105,7 @@ LOGF_DEBUG(thl, "this is a %s style debug log", "printf");
 clear_thread_logger(thl);
 ```
 
-## file logging
-
-The file logging examples leverage the helper macros dedicated for file logging. These are prefixed with `fLOG`. Printf style logging would be denoted as `fLOGF_<LEVEL>`, whereas regular logging would be denoted as `fLOG_<LEVEL>`. These are written to minimize typing, as the macros handle all the struct member referencing meaning you simply need to supply the struct when invoking the macros.
+## file and stdout
 
 ```C
 #include <stdbool.h>
