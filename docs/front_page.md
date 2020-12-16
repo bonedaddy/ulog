@@ -2,13 +2,23 @@
 
 ![](https://gateway.temporal.cloud/ipfs/QmYPyYVqcVjtziJrgsVGzk4mmh7HJ3wtEsh4yE24XLNtFK)
 
-`ulog` (uber log) is a lightweight and threadsafe logging library for C based programs. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind. 
+
+`ulog` (uber log) is a lightweight and threadsafe logging library written in C, with support for C++. It features color coded output, with the ability to send logs to stdout and a file. File and line information indicating what fired the log is also included. It has INFO, WARN, ERROR, and DEBUG log levels, and is thoroughly tested with cmocka and valgrind. 
 
 If not using debug logging then any DEBUG level log calls are silently skipped. The logger is threadsafe in that multiple threads can't log at the same time. In practice there is very little lock contention and in all honesty you will probably never have to worry about it.
 
 In terms of memory usage, the only memory allocations conducted by this library are when initializing the logger. During actual logging there is no memory allocations whatsoever, as we use stack allocated variables. In practice logger initialization consumes arounds 7.4 KiB of memory, while regular logger usage general consumes no more than 3 -> 3.4 KiB of memory at any one time.
 
 **Please be aware that after calling `clear_thread_logger` or `clear_file_logger` using the logger results in undefined behavior, likely a panic causing the program to exit. Having one or more threads initiate a log invocation while concurrently calling `clear_thread_logger` or `clear_file_logger` results in undefined behavior. When clearing the logger you must be certain no other threads will attempt to use the logger.**
+
+# features
+
+* C/C++ support
+* lightweight (3 -> 3.4 KiB memory consumption)
+* threadsafe
+* color coded logs
+* stdout and file descriptor logging
+* file and line number that emitted the log included
 
 # why another logging library?
 
@@ -18,13 +28,13 @@ Interested in reading more about how `ulog` was born? [I published a blog post d
 
 # versioning
 
-The library follows semver as the versioning scheme. Additinoally the header files have `LOGGER_VERSION` and `COLORS_VERSION` macros which include the current release number. This is to help situations in which you may be using the library my copy and pasting the code into some other repository.
+The library follows the semver versioning scheme. Additionally a `version.h` header file has the current release version listed as a macro.
 
 # installation
 
 ## manual (broke)
 
-Copy and paste the `logger.h`, `colors.h`, `logger.c`, and `colors.c` files into whatever project you are working on. You will need to make sure that you have pthreads available to link with as the logger library has a pthreads dependency.
+Copy and paste the `logger.h`, `colors.h`, `version.h`, `logger.c`, and `colors.c` files into whatever project you are working on. You will need to make sure that you have pthreads available to link with as the logger library has a pthreads dependency.
 
 ## clib (woke)
 
@@ -66,9 +76,13 @@ $> ctest -T memcheck
 
 # usage
 
-The following code samples produce the output shown in the screenshot at the start of the readme.
+The primary method of interacting with ulog is by using macros. The macros allow you to emit logs at various levels, minimizing the amount of typing required to do so. There are a total of four macros that can be used, the base macros are denoted in the form of `LOG_<LEVEL>` and `LOGF_<LEVEL>` which provide the capabilities to emit logs to standard out. The `LOG_` macros can be used to emit a log message as is, that is to say you provide a single message to emit, while the `LOGF_` macros can be used to emit a log message formatted according to the printf formatting rules leveraging variadic arguments. 
 
-## no file logging
+There are two additional macros that mimic `LOG_<LEVEL>` and `LOGF_<LEVEL>` however they will also log to a given file, while also logging to stdout. They are `fLOG_<LEVEL>` and `fLOG_<LEVEL>`. The main difference between these, other than the fact that file logging capabilities are provided, is that the `LOG_<LEVEL>` and `LOGF_<LEVEL>` macros take in an instance of `thread_logger` while the `fLOG_<LEVEL>` and `fLOGF_<LEVEL>` macros take in an instance of `file_logger`.
+
+Below you'll find examples that showcase how to generate the logs that were captured in the screenshot displayed at the beginning of this readme.
+
+## stdout only
 
 ```C
 #include <stdbool.H>
@@ -76,23 +90,23 @@ The following code samples produce the output shown in the screenshot at the sta
 
 thread_logger *thl = new_thread_logger(true);
 
-LOG_INFO(thl, 0, "this is an info log");
-LOG_WARN(thl, 0, "this is a warn log");
-LOG_ERROR(thl, 0, "this is an error log");
-LOG_DEBUG(thl, 0, "this is a debug log");
+LOG_INFO(thl, "this is an info log");
+LOG_WARN(thl, "this is a warn log");
+LOG_ERROR(thl, "this is an error log");
+LOG_DEBUG(thl, "this is a debug log");
 
 // the LOGF_ prefixed functions can be used for printf styled output
-LOGF_INFO(thl, 0, "this is a %s style info log", "printf");
-LOGF_WARN(thl, 0, "this is a %s style warn log", "printf");
-LOGF_ERROR(thl, 0, "this is a %s style error log", "printf");
-LOGF_DEBUG(thl, 0, "this is a %s style debug log", "printf");
+LOGF_INFO(thl, "this is a %s style info log", "printf");
+LOGF_WARN(thl, "this is a %s style warn log", "printf");
+LOGF_ERROR(thl, "this is a %s style error log", "printf");
+LOGF_DEBUG(thl, "this is a %s style debug log", "printf");
 
 // free up memory when you no longer need the logger
 // note: after this returns thl is no logner safe to use
 clear_thread_logger(thl);
 ```
 
-## file logging
+## file and stdout
 
 ```C
 #include <stdbool.h>
@@ -101,19 +115,19 @@ clear_thread_logger(thl);
 
 file_logger *fhl = new_file_logger("testfile.log", true);
 
-LOG_INFO(fhl->thl, fhl->fd, "this is an info log");
-LOG_WARN(fhl->thl, fhl->fd,"this is a warn log");
-LOG_ERROR(fhl->thl, fhl->fd, "this is an error log");
-LOG_DEBUG(fhl->thl, fhl->fd, "this is a debug log");
+fLOG_INFO(fhl, "this is an info log");
+fLOG_WARN(fhl, "this is a warn log");
+fLOG_ERROR(fhl, "this is an error log");
+fLOG_DEBUG(fhl, "this is a debug log");
 
-LOGF_INFO(fhl->thl, fhl->fd, "this is a %s style info log", "printf");
-LOGF_WARN(fhl->thl, fhl->fd, "this is a %s style warn log", "printf");
-LOGF_ERROR(fhl->thl, fhl->fd, "this is a %s style error log", "printf");
-LOGF_DEBUG(fhl->thl, fhl->fd, "this is a %s style debug log", "printf");
+fLOGF_INFO(fhl, "this is a %s style info log", "printf");
+fLOGF_WARN(fhl, "this is a %s style warn log", "printf");
+fLOGF_ERROR(fhl, "this is a %s style error log", "printf");
+fLOGF_DEBUG(fhl, "this is a %s style debug log", "printf");
 
-// if you dont want to loger to a file and just stdout, simply set the `fhl->fd` value to 0
-LOG_INFO(fhl->thl, 0, "this will only log to stdout");
-LOGF_INFO(fhl->thl, 0, "this will only log to %s", "stdout");
+// if you dont want to log to a file you will want to use the LOG_ and LOGF_ macros
+LOG_INFO(fhl->thl, "this will only log to stdout");
+LOGF_INFO(fhl->thl, "this will only log to %s", "stdout");
 
 clear_file_logger(fhl);
 ```
