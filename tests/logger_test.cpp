@@ -26,14 +26,14 @@ void validate_test_args(test testdata) {
 int main(void) {
     // thread logger tests
     thread_logger *thl = new_thread_logger(true);
-    LOG_INFO(thl, 0, "this is an info log");
-    LOG_WARN(thl, 0, "this is a warn log");
-    LOG_ERROR(thl, 0, "this is an error log");
-    LOG_DEBUG(thl, 0, "this is a debug log");
-    LOGF_INFO(thl, 0, "this is a %s style info log", "printf");
-    LOGF_WARN(thl, 0, "this is a %s style warn log", "printf");
-    LOGF_ERROR(thl, 0, "this is a %s style error log", "printf");
-    LOGF_DEBUG(thl, 0, "this is a %s style debug log", "printf");
+    LOG_INFO(thl, "this is an info log");
+    LOG_WARN(thl, "this is a warn log");
+    LOG_ERROR(thl, "this is an error log");
+    LOG_DEBUG(thl, "this is a debug log");
+    LOGF_INFO(thl, "this is a %s style info log", "printf");
+    LOGF_WARN(thl, "this is a %s style warn log", "printf");
+    LOGF_ERROR(thl, "this is a %s style error log", "printf");
+    LOGF_DEBUG(thl, "this is a %s style debug log", "printf");
     clear_thread_logger(thl);
     
     // file logger tests
@@ -46,8 +46,8 @@ int main(void) {
     fLOGF_WARN(fhl, "this is a %s style warn log", "printf");
     fLOGF_ERROR(fhl, "this is a %s style error log", "printf");
     fLOGF_DEBUG(fhl, "this is a %s style debug log", "printf");
-    LOG_INFO(fhl->thl, 0, "this will only log to stdout");
-    LOGF_INFO(fhl->thl, 0, "this will only log to %s", "stdout");
+    LOG_INFO(fhl->thl, "this will only log to stdout");
+    LOGF_INFO(fhl->thl, "this will only log to %s", "stdout");
     clear_file_logger(fhl);
 
     test_t tests[8] = {
