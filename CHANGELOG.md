@@ -1,7 +1,9 @@
-# v0.0.3 (wip)
+# v0.0.3
 
-* Fixes issues with usage in C++ code [#22](https://github.com/bonedaddy/ulog/pull/22)
-* Remove colored write allocation [#21](https://github.com/bonedaddy/ulog/pull/21)
+* Fixes issues with usage in C++ code
+* Remove colored write allocation
+* Simplify macro usage
+* Update clib packaging to include cmaek build script
 
 # v0.0.2
 
