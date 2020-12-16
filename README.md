@@ -85,16 +85,16 @@ The following code samples produce the output shown in the screenshot at the sta
 
 thread_logger *thl = new_thread_logger(true);
 
-LOG_INFO(thl, 0, "this is an info log");
-LOG_WARN(thl, 0, "this is a warn log");
-LOG_ERROR(thl, 0, "this is an error log");
-LOG_DEBUG(thl, 0, "this is a debug log");
+LOG_INFO(thl, "this is an info log");
+LOG_WARN(thl, "this is a warn log");
+LOG_ERROR(thl, "this is an error log");
+LOG_DEBUG(thl, "this is a debug log");
 
 // the LOGF_ prefixed functions can be used for printf styled output
-LOGF_INFO(thl, 0, "this is a %s style info log", "printf");
-LOGF_WARN(thl, 0, "this is a %s style warn log", "printf");
-LOGF_ERROR(thl, 0, "this is a %s style error log", "printf");
-LOGF_DEBUG(thl, 0, "this is a %s style debug log", "printf");
+LOGF_INFO(thl, "this is a %s style info log", "printf");
+LOGF_WARN(thl, "this is a %s style warn log", "printf");
+LOGF_ERROR(thl, "this is a %s style error log", "printf");
+LOGF_DEBUG(thl, "this is a %s style debug log", "printf");
 
 // free up memory when you no longer need the logger
 // note: after this returns thl is no logner safe to use
@@ -123,8 +123,8 @@ fLOGF_ERROR(fhl, "this is a %s style error log", "printf");
 fLOGF_DEBUG(fhl, "this is a %s style debug log", "printf");
 
 // if you dont want to log to a file you will want to use the LOG_ and LOGF_ macros
-LOG_INFO(fhl->thl, 0, "this will only log to stdout");
-LOGF_INFO(fhl->thl, 0, "this will only log to %s", "stdout");
+LOG_INFO(fhl->thl, "this will only log to stdout");
+LOGF_INFO(fhl->thl, "this will only log to %s", "stdout");
 
 clear_file_logger(fhl);
 ```
