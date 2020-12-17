@@ -39,7 +39,7 @@ before_deploy:
 deploy: # this is a hacky workaround as script provider is causing problems
   skip_cleanup: true
   provider: releases
-  script: .scripts/valgrind
+  script: .scripts/valgrind.sh
   on:
     branch: master
     tags: true
