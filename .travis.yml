@@ -32,9 +32,11 @@ script:
   - make build-ci
   # change to builddir and run tests
   - cd build && ctest --extra-verbose
+  # go back to parent directroy
+  - cd ..
 
 before_deploy:
-  - make run-valgrind
+- make run-valgrind
 
 deploy: # this is a hacky workaround as script provider is causing problems
   skip_cleanup: true
