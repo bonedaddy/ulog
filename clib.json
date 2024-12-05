@@ -10,7 +10,6 @@
     "threadsafe"
   ],
   "dependencies": {
-    "pthreads": ""
   },
   "src": [
     "include/colors.h",
